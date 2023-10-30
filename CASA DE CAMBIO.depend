@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1698335445 source:c:\users\usuario\3d objects\cb\casa de cambio\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+	"prototypes.h"
+	"cFecha.h"
+	"classes.h"
+	"menus.h"
+	"functions.h"
+
+1698159278 c:\users\usuario\3d objects\cb\casa de cambio\prototypes.h
+
+1698159278 c:\users\usuario\3d objects\cb\casa de cambio\cfecha.h
+
+1698335497 c:\users\usuario\3d objects\cb\casa de cambio\classes.h
+
+1698158675 c:\users\usuario\3d objects\cb\casa de cambio\menus.h
+
+1698159158 c:\users\usuario\3d objects\cb\casa de cambio\functions.h
+
+1698626882 source:c:\users\brunno\desktop\casa de cambio\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+	"prototypes.h"
+	"cFecha.h"
+	"classes.h"
+	"menus.h"
+	"functions.h"
+
+1698630135 c:\users\brunno\desktop\casa de cambio\prototypes.h
+
+1698459142 c:\users\brunno\desktop\casa de cambio\cfecha.h
+
+1698628550 c:\users\brunno\desktop\casa de cambio\classes.h
+
+1698630195 c:\users\brunno\desktop\casa de cambio\menus.h
+
+1698350217 c:\users\brunno\desktop\casa de cambio\functions.h
+
