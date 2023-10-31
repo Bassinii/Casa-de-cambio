@@ -3,7 +3,7 @@
 
 class Persona{
 protected:
-    int dni,edad,telefono;
+    int dni,telefono;
     char nombre[30],apellido[30];
     bool estado;
 public:
@@ -21,23 +21,54 @@ private:
     char monedaPreferida[30];
     Fecha inscripcion;
 public:
-    Cliente(const char *nombre="N/A", const char *apellido="N/A",int dni=0, const char *monedaPreferida="NINGUNA"){
+    ///CONSTRUCTOR CON PARAMETROS POR OMISIÓN
+    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA"){
         strcpy(this->nombre,nombre);
         strcpy(this->apellido,apellido);
         this->dni=dni;
         strcpy(this->monedaPreferida,monedaPreferida);
     }
-    void mostrar(){
+
+    ///METODOS
+    void cargar();
+    void mostrar();
+
+};
+
+void Cliente::cargar(){
+    int dia,mes,anio;
+    char opc[4];
+    cout<<"INGRESAR EL NOMBRE DEL CLIENTE"<<endl;
+    cargarCadena(*nombre,30);
+    cout<<"INGRESAR EL APELLIDO DEL CLIENTE"<<endl;
+    cargarCadena(*apellido,30);
+    cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    cin>>dni;
+    cout<<"INGRESAR NUMERO DE TELEFONO"<<endl;
+    cin>>telefono;
+    cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(Si/No)"<<endl;
+    cin>>opc;
+    if(strcspn(opc,"NO")||strcspn(opc,"no")||strcspn(opc,"No")||strcspn(opc,"nO")){
+        cin>>dia;
+        cin>>mes;
+        cin>>anio;
+        inscripcion.setDia(dia);
+        inscripcion.setMes(mes);
+        inscripcion.setAnio(anio);
+    }
+}
+
+void Cliente::mostrar(){
         cout<<"-DATOS DEL CLIENTE-"<<endl;
         cout<<" NOMBRE: "<<nombre<<endl;
         cout<<" APELLIDO: "<<apellido<<endl;
         cout<<" DNI: "<<dni<<endl;
+        cout<<" TELEFONO: "<<telefono<<endl;
         cout<<" CANTIDAD DE OPERACIONES: "<<cantTransacciones<<endl;
         cout<<" MONEDA PREFERIDA: "<<monedaPreferida<<endl;
         cout<<" FECHA DE INSCRIPCION: ";
         inscripcion.MostrarFecha();
-    }
-};
+}
 
 class ArchivoClientes{
 private:

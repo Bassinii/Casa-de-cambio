@@ -10,24 +10,27 @@ int menuPrincipal(){
         cout<<"- 1_ MENU CLIENTES      -"<<endl;
         cout<<"- 2_ MENU EMPLEADOS     -"<<endl;
         cout<<"- 3_ MENU TRANSACCIONES -"<<endl;
-        cout<<"- 4_ CAMBIAR MONEDAS    -"<<endl;
+        cout<<"- 4_ MENU MONEDAS       -"<<endl;
         cout<<"- 5_ CONFIGURACIONES    -"<<endl;
         cout<<"- 0_ SALIR              -"<<endl;
         cout<<"-------------------------"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cin>>opc;
-
         system("cls");
         switch(opc){
             case 1:
+                menuClientes();
                 break;
             case 2:
+                menuEmpleados();
                 break;
             case 3:
+                menuTransacciones();
                 break;
             case 4:
                 menuMonedas();
                 break;
             case 5:
+                menuConfiguraciones();
                 break;
             case 0:
                 return 0;
@@ -39,9 +42,35 @@ int menuPrincipal(){
     }
 }
 
+int menuClientes(){
+    while(true){
+        int opc;
+        cout<<"----------------------------------"<<endl;
+        cout<<"-          MENU CLIENTES         -"<<endl;
+        cout<<"----------------------------------"<<endl;
+        cout<<"-  1_ AGREGAR CLIENTE            -"<<endl;
+        cout<<"-  2_ MOSTRAR CLIENTE POR DNI    -"<<endl;
+        cout<<"-  3_ MOSTRAR TODOS LOS CLIENTES -"<<endl;
+        cout<<"-  0_ SALIR                      -"<<endl;
+        cout<<"----------------------------------"<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+        cin>>opc;
+        system("cls");
+        switch(opc){
+        case 1:
+            agregarCliente();
+        case 0:
+            return -1;
+            break;
+        default:
+            cout<<"OPCION INCORRECTA"<<endl;
+            break;
+        }
+    }
+}
+
 int menuMonedas(){
     while(true){
-    int opc;
+        int opc;
         cout<<"-------------------------"<<endl;
         cout<<"-      MENU MONEDAS     -"<<endl;
         cout<<"-------------------------"<<endl;
@@ -54,10 +83,15 @@ int menuMonedas(){
         switch(opc){
 
 
-    case 0:
-        return -1;
+        case 0:
+            return -1;
+            break;
+        default:
+            cout<<"OPCION INCORRECTA"<<endl;
+            break;
         }
     }
 }
+
 
 #endif // MENUS_H_INCLUDED

@@ -12,5 +12,7 @@ int menuTransacciones();
 int menuMonedas();
 int menuConfiguraciones();
 
+///MENU CLIENTES
+bool agregarCliente();
 
 #endif // PROTOTYPES_H_INCLUDED

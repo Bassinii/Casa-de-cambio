@@ -15,5 +15,12 @@ void cargarCadena(char *palabra, int tamano){
     fflush(stdin);
 }
 
+///MENU CLIENTES
+bool agregarCliente(){
+    cout<<"----------------------------------"<<endl;
+    cout<<"-         AGREGAR CLIENTE        -"<<endl;
+    cout<<"----------------------------------"<<endl;
+
+}
 
 #endif // FUNCTIONS_H_INCLUDED

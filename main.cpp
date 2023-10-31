@@ -11,6 +11,6 @@ using namespace std;
 #include "functions.h"
 
 int main(){
-
+    menuPrincipal();
     return 0;
 }
