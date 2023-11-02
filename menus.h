@@ -57,7 +57,16 @@ int menuClientes(){
         system("cls");
         switch(opc){
         case 1:
-            agregarCliente();
+            if(agregarCliente()) cout<<"SE AGREGO EL CLIENTE CORRECTAMENTE"<<endl;
+            else cout<<"NO SE PUDO AGREGAR EL CLIENTE"<<endl;
+            system("pause");
+            system("cls");
+            break;
+        case 3:
+            mostrarTodosLosClientes();
+            system("pause");
+            system("cls");
+            break;
         case 0:
             return -1;
             break;

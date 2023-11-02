@@ -2,17 +2,18 @@
 #define PROTOTYPES_H_INCLUDED
 
 ///FUNCIONES
-void cargarCadena(char,int);
+void cargarCadena(char*,int);
 
 ///MENUES
 int menuPrincipal();
 int menuClientes();
-int menuEmpleados();
-int menuTransacciones();
+int menuEmpleados(){;};
+int menuTransacciones(){;}
 int menuMonedas();
-int menuConfiguraciones();
+int menuConfiguraciones(){;}
 
 ///MENU CLIENTES
 bool agregarCliente();
+bool mostrarTodosLosClientes();
 
 #endif // PROTOTYPES_H_INCLUDED

@@ -39,22 +39,27 @@ void Cliente::cargar(){
     int dia,mes,anio;
     char opc[4];
     cout<<"INGRESAR EL NOMBRE DEL CLIENTE"<<endl;
-    cargarCadena(*nombre,30);
+    cargarCadena(nombre,30);
     cout<<"INGRESAR EL APELLIDO DEL CLIENTE"<<endl;
-    cargarCadena(*apellido,30);
+    cargarCadena(apellido,30);
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
     cin>>dni;
     cout<<"INGRESAR NUMERO DE TELEFONO"<<endl;
     cin>>telefono;
     cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(Si/No)"<<endl;
-    cin>>opc;
-    if(strcspn(opc,"NO")||strcspn(opc,"no")||strcspn(opc,"No")||strcspn(opc,"nO")){
+    cargarCadena(opc,4);
+    if(strcmp(opc,"NO")||strcmp(opc,"no")||strcmp(opc,"No")||strcmp(opc,"nO")){
+        cout<<"INGRESAR EL DIA"<<endl;
         cin>>dia;
+        cout<<"INGRESAR EL MES"<<endl;
         cin>>mes;
+        cout<<"INGRESAR EL ANIO"<<endl;
         cin>>anio;
         inscripcion.setDia(dia);
         inscripcion.setMes(mes);
         inscripcion.setAnio(anio);
+    }else{
+        cout<<"fue por el falso";
     }
 }
 
