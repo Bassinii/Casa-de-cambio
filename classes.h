@@ -22,11 +22,11 @@ private:
     Fecha inscripcion;
 public:
     ///CONSTRUCTOR CON PARAMETROS POR OMISIÓN
-    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA"){
+    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA", int cantTransacciones=0){
         strcpy(this->nombre,nombre);
         strcpy(this->apellido,apellido);
-        this->dni=dni;
         strcpy(this->monedaPreferida,monedaPreferida);
+        this->cantTransacciones=cantTransacciones;
     }
 
     ///METODOS
@@ -46,20 +46,28 @@ void Cliente::cargar(){
     cin>>dni;
     cout<<"INGRESAR NUMERO DE TELEFONO"<<endl;
     cin>>telefono;
-    cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(Si/No)"<<endl;
-    cargarCadena(opc,4);
-    if(strcmp(opc,"NO")||strcmp(opc,"no")||strcmp(opc,"No")||strcmp(opc,"nO")){
-        cout<<"INGRESAR EL DIA"<<endl;
-        cin>>dia;
-        cout<<"INGRESAR EL MES"<<endl;
-        cin>>mes;
-        cout<<"INGRESAR EL ANIO"<<endl;
-        cin>>anio;
-        inscripcion.setDia(dia);
-        inscripcion.setMes(mes);
-        inscripcion.setAnio(anio);
-    }else{
-        cout<<"fue por el falso";
+    while(true){
+        cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(Si/No)"<<endl;
+        cargarCadena(opc,4);
+        if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"No")==0||strcmp(opc,"nO")==0){
+            cout<<"INGRESAR EL DIA"<<endl;
+            cin>>dia;
+            cout<<"INGRESAR EL MES"<<endl;
+            cin>>mes;
+            cout<<"INGRESAR EL ANIO"<<endl;
+            cin>>anio;
+            inscripcion.setDia(dia);
+            inscripcion.setMes(mes);
+            inscripcion.setAnio(anio);
+            break;
+        }else if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"Si")==0||strcmp(opc,"sI")==0){
+            cout<<"FECHA ASIGNADA: "<<endl;
+            inscripcion.MostrarFecha();
+            break;
+        }else{
+            cout<<"OPCION INVALIDA"<<endl;
+
+        }
     }
 }
 

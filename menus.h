@@ -62,6 +62,11 @@ int menuClientes(){
             system("pause");
             system("cls");
             break;
+        case 2:
+            mostrarClientePorDni();
+            system("pause");
+            system("cls");
+            break;
         case 3:
             mostrarTodosLosClientes();
             system("pause");
@@ -75,6 +80,15 @@ int menuClientes(){
             break;
         }
     }
+}
+
+int menuEmpleados(){
+
+    return 0;
+}
+
+int menuTransacciones(){
+    return 0;
 }
 
 int menuMonedas(){
@@ -100,6 +114,10 @@ int menuMonedas(){
             break;
         }
     }
+}
+
+int menuConfiguraciones(){
+    return 0;
 }
 
 

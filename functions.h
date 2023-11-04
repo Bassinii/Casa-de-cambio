@@ -29,16 +29,32 @@ bool agregarCliente(){
     return escribio;
 }
 
-bool mostrarTodosLosClientes(){
+void mostrarClientePorDni(){
     ArchivoClientes arch("Clientes.dat");
     Cliente cliente;
-    int tam=arch.contarRegistros();
-    cout<<tam;
-    /*bool leyo;
+    int tam,dni;
+    tam=arch.contarRegistros();
+    cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    cin>>dni;
+    for(int i=0;i<tam;i++){
+        cliente=arch.leerRegistro(i);
+        if(cliente.getDni()==dni){
+            cliente.mostrar();
+            cout<<endl;
+        }
+    }
+}
+
+void mostrarTodosLosClientes(){
+    ArchivoClientes arch("Clientes.dat");
+    Cliente cliente;
+    int tam;
+    tam=arch.contarRegistros();
     for(int i=0;i<tam;i++){
         cliente=arch.leerRegistro(i);
         cliente.mostrar();
-    }*/
+        cout<<endl;
+    }
 }
 
 #endif // FUNCTIONS_H_INCLUDED

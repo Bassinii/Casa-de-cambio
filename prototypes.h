@@ -7,13 +7,14 @@ void cargarCadena(char*,int);
 ///MENUES
 int menuPrincipal();
 int menuClientes();
-int menuEmpleados(){;};
-int menuTransacciones(){;}
+int menuEmpleados();
+int menuTransacciones();
 int menuMonedas();
-int menuConfiguraciones(){;}
+int menuConfiguraciones();
 
 ///MENU CLIENTES
 bool agregarCliente();
-bool mostrarTodosLosClientes();
+void mostrarClientePorDni();
+void mostrarTodosLosClientes();
 
 #endif // PROTOTYPES_H_INCLUDED

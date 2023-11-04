@@ -59,3 +59,23 @@
 
 1698940252 c:\users\usuario\desktop\casa-de-cambio-main\functions.h
 
+1698960026 source:c:\users\brunno\desktop\casa-de-cambio-main\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+	"prototypes.h"
+	"cFecha.h"
+	"classes.h"
+	"menus.h"
+	"functions.h"
+
+1699069181 c:\users\brunno\desktop\casa-de-cambio-main\prototypes.h
+
+1698958385 c:\users\brunno\desktop\casa-de-cambio-main\cfecha.h
+
+1699068548 c:\users\brunno\desktop\casa-de-cambio-main\classes.h
+
+1699069181 c:\users\brunno\desktop\casa-de-cambio-main\menus.h
+
+1699069181 c:\users\brunno\desktop\casa-de-cambio-main\functions.h
+
