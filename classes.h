@@ -15,18 +15,19 @@ public:
     void setTelefono(int telefono){this->telefono=telefono;}
 };
 
-class Cliente : protected Persona{
+class Cliente : public Persona{
 private:
     int cantTransacciones;
     char monedaPreferida[30];
     Fecha inscripcion;
 public:
     ///CONSTRUCTOR CON PARAMETROS POR OMISIÓN
-    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA", int cantTransacciones=0){
+    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA", int cantTransacciones=0, bool estado=true){
         strcpy(this->nombre,nombre);
         strcpy(this->apellido,apellido);
         strcpy(this->monedaPreferida,monedaPreferida);
         this->cantTransacciones=cantTransacciones;
+        this->estado=estado;
     }
 
     ///METODOS
@@ -93,6 +94,7 @@ public:
     bool agregarRegistro(Cliente);
     Cliente leerRegistro(int);
     int contarRegistros();
+    void borrarRegistro(int);
 };
 
 bool ArchivoClientes::agregarRegistro(Cliente cliente){
@@ -128,6 +130,16 @@ int ArchivoClientes::contarRegistros(){
     kb=ftell(f);
     fclose(f);
     return kb/sizeof(Cliente);
+}
+
+void ArchivoClientes::borrarRegistro(int pos){
+    FILE *f;
+
+    f=fopen(nombre,"ab");
+    if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+    fseek(f,sizeof(Cliente)*pos,SEEK_SET);
+
+
 }
 
 

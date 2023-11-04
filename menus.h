@@ -51,6 +51,7 @@ int menuClientes(){
         cout<<"-  1_ AGREGAR CLIENTE            -"<<endl;
         cout<<"-  2_ MOSTRAR CLIENTE POR DNI    -"<<endl;
         cout<<"-  3_ MOSTRAR TODOS LOS CLIENTES -"<<endl;
+        cout<<"-  4_ ELIMINAR CLIENTE           -"<<endl;
         cout<<"-  0_ SALIR                      -"<<endl;
         cout<<"----------------------------------"<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cin>>opc;
@@ -71,6 +72,9 @@ int menuClientes(){
             mostrarTodosLosClientes();
             system("pause");
             system("cls");
+            break;
+        case 4:
+
             break;
         case 0:
             return -1;

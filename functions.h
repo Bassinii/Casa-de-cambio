@@ -33,16 +33,21 @@ void mostrarClientePorDni(){
     ArchivoClientes arch("Clientes.dat");
     Cliente cliente;
     int tam,dni;
+    bool noMostro=true;
     tam=arch.contarRegistros();
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
     cin>>dni;
     for(int i=0;i<tam;i++){
         cliente=arch.leerRegistro(i);
-        if(cliente.getDni()==dni){
+        if(cliente.getDni()==dni&&cliente.getEstado()){
             cliente.mostrar();
             cout<<endl;
+            noMostro=false;
         }
     }
+    if(noMostro){
+            cout<<"NO SE ENCONTRO EL DNI"<<endl;
+        }
 }
 
 void mostrarTodosLosClientes(){
@@ -52,8 +57,10 @@ void mostrarTodosLosClientes(){
     tam=arch.contarRegistros();
     for(int i=0;i<tam;i++){
         cliente=arch.leerRegistro(i);
-        cliente.mostrar();
-        cout<<endl;
+        if(cliente.getEstado()){
+            cliente.mostrar();
+            cout<<endl;
+        }
     }
 }
 
