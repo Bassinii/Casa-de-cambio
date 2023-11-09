@@ -13,6 +13,7 @@ public:
     int getTelefono(){return telefono;}
     ///setters
     void setTelefono(int telefono){this->telefono=telefono;}
+    void setEstado(bool estado){this->estado=estado;}
 };
 
 class Cliente : public Persona{
@@ -67,7 +68,6 @@ void Cliente::cargar(){
             break;
         }else{
             cout<<"OPCION INVALIDA"<<endl;
-
         }
     }
 }
@@ -82,6 +82,7 @@ void Cliente::mostrar(){
         cout<<" MONEDA PREFERIDA: "<<monedaPreferida<<endl;
         cout<<" FECHA DE INSCRIPCION: ";
         inscripcion.MostrarFecha();
+        cout<<" ESTADO: "<<estado<<endl;
 }
 
 class ArchivoClientes{
@@ -94,7 +95,7 @@ public:
     bool agregarRegistro(Cliente);
     Cliente leerRegistro(int);
     int contarRegistros();
-    void borrarRegistro(int);
+    bool bajaLogica(int,Cliente&);
 };
 
 bool ArchivoClientes::agregarRegistro(Cliente cliente){
@@ -132,14 +133,17 @@ int ArchivoClientes::contarRegistros(){
     return kb/sizeof(Cliente);
 }
 
-void ArchivoClientes::borrarRegistro(int pos){
+//Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
+//y lo escribe
+bool ArchivoClientes::bajaLogica(int pos, Cliente& cliente){
     FILE *f;
-
+    bool bajo;
+    cliente.setEstado(false);
     f=fopen(nombre,"ab");
     if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     fseek(f,sizeof(Cliente)*pos,SEEK_SET);
-
-
+    bajo=fwrite(&cliente,sizeof(Cliente)*pos,1,f);
+    return bajo;
 }
 
 

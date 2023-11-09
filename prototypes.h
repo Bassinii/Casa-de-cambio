@@ -16,5 +16,6 @@ int menuConfiguraciones();
 bool agregarCliente();
 void mostrarClientePorDni();
 void mostrarTodosLosClientes();
+bool eliminarCliente();
 
 #endif // PROTOTYPES_H_INCLUDED

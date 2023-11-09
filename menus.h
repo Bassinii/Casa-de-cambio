@@ -74,7 +74,10 @@ int menuClientes(){
             system("cls");
             break;
         case 4:
-
+            if(eliminarCliente()) cout<<"SE ELIMINO EL CLIENTE CORRECTAMENTE!"<<endl;
+            else cout<<"NO SE PUDO ELIMINAR EL CLIENTE"<<endl;
+            system("pause");
+            system("cls");
             break;
         case 0:
             return -1;

@@ -64,4 +64,24 @@ void mostrarTodosLosClientes(){
     }
 }
 
+bool eliminarCliente(){
+    ArchivoClientes archCli("Clientes.dat");
+    Cliente cliente;
+    int dni,pos;
+    bool bajo=false,encontro=false;
+    cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    cin>>dni;
+    pos=archCli.contarRegistros();
+    for(int i=0;i<pos;i++){
+        cliente=archCli.leerRegistro(i);
+        if(cliente.getDni()==dni){
+            encontro=true;
+            bajo=archCli.bajaLogica(i,cliente);
+
+        }
+    }
+    if(!encontro) cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;
+    return bajo;
+}
+
 #endif // FUNCTIONS_H_INCLUDED
