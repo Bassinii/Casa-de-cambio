@@ -17,5 +17,6 @@ bool agregarCliente();
 void mostrarClientePorDni();
 void mostrarTodosLosClientes();
 bool eliminarCliente();
+void buscarDni();
 
 #endif // PROTOTYPES_H_INCLUDED

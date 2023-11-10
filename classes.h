@@ -9,8 +9,9 @@ protected:
 public:
     ///getters
     int getDni(){return dni;}
-    bool getEstado(){return estado;}
     int getTelefono(){return telefono;}
+    bool getEstado(){return estado;}
+    char *getNombre(){return nombre;}
     ///setters
     void setTelefono(int telefono){this->telefono=telefono;}
     void setEstado(bool estado){this->estado=estado;}

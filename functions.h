@@ -29,6 +29,7 @@ bool agregarCliente(){
     return escribio;
 }
 
+//Muestra el cliente dependiendo su numero de dni
 void mostrarClientePorDni(){
     ArchivoClientes arch("Clientes.dat");
     Cliente cliente;
@@ -50,6 +51,7 @@ void mostrarClientePorDni(){
         }
 }
 
+//muestra todos los clientes
 void mostrarTodosLosClientes(){
     ArchivoClientes arch("Clientes.dat");
     Cliente cliente;
@@ -64,15 +66,17 @@ void mostrarTodosLosClientes(){
     }
 }
 
+//baja logica de un cliente, se setea su estado en false para que las funciones
+//mostrarClientePorDni() y mostrarTodosLosClientes no lo listen por pantalla
 bool eliminarCliente(){
     ArchivoClientes archCli("Clientes.dat");
     Cliente cliente;
     int dni,pos,posReg;
     char opc[5];
     bool bajo=false,encontro=false;
+    pos=archCli.contarRegistros();
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
     cin>>dni;
-    pos=archCli.contarRegistros();
     for(int i=0;i<pos;i++){
         cliente=archCli.leerRegistro(i);
         if(cliente.getDni()==dni){
@@ -84,7 +88,7 @@ bool eliminarCliente(){
     if(!encontro) cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;
     if(encontro){
         cliente.mostrar();
-        cout<<"BORRAR REGISTRO? (SI/NO)"<<endl;
+        cout<<"BORRAR CLIENTE? (SI/NO)"<<endl;
         cargarCadena(opc,5);
         if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
             bajo=archCli.bajaLogica(posReg,cliente);
@@ -96,5 +100,24 @@ bool eliminarCliente(){
     }
     return bajo;
 }
+
+//funcion para saber el dni del un cliente si se desconoce este.
+void buscarDni(){
+    ArchivoClientes archCli("Clientes.dat");
+    Cliente cliente;
+    int pos;
+    char nombreBusco[30],nombre[30];
+    pos=archCli.contarRegistros();
+    cout<<"INGRESAR NOMBRE DEL CLIENTE"<<endl;
+    cargarCadena(nombreBusco,30);
+    for(int i=0;i<pos;i++){
+        cliente=archCli.leerRegistro(i);
+        strcpy(nombre,cliente.getNombre());
+        if(strcmp(nombreBusco,nombre)==0){
+
+        }
+    }
+}
+
 
 #endif // FUNCTIONS_H_INCLUDED
