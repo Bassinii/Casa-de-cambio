@@ -73,16 +73,16 @@ void Cliente::cargar(){
 }
 
 void Cliente::mostrar(){
-        cout<<"-DATOS DEL CLIENTE-"<<endl;
-        cout<<" NOMBRE: "<<nombre<<endl;
-        cout<<" APELLIDO: "<<apellido<<endl;
-        cout<<" DNI: "<<dni<<endl;
-        cout<<" TELEFONO: "<<telefono<<endl;
-        cout<<" CANTIDAD DE OPERACIONES: "<<cantTransacciones<<endl;
-        cout<<" MONEDA PREFERIDA: "<<monedaPreferida<<endl;
-        cout<<" FECHA DE INSCRIPCION: ";
-        inscripcion.MostrarFecha();
-        cout<<" ESTADO: "<<estado<<endl;
+    cout<<"-DATOS DEL CLIENTE-"<<endl;
+    cout<<" NOMBRE: "<<nombre<<endl;
+    cout<<" APELLIDO: "<<apellido<<endl;
+    cout<<" DNI: "<<dni<<endl;
+    cout<<" TELEFONO: "<<telefono<<endl;
+    cout<<" CANTIDAD DE OPERACIONES: "<<cantTransacciones<<endl;
+    cout<<" MONEDA PREFERIDA: "<<monedaPreferida<<endl;
+    cout<<" FECHA DE INSCRIPCION: ";
+    inscripcion.MostrarFecha();
+    cout<<" ESTADO: "<<estado<<endl;
 }
 
 class ArchivoClientes{
@@ -139,10 +139,11 @@ bool ArchivoClientes::bajaLogica(int pos, Cliente& cliente){
     FILE *f;
     bool bajo;
     cliente.setEstado(false);
-    f=fopen(nombre,"ab");
+    f=fopen(nombre,"rb+");
     if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     fseek(f,sizeof(Cliente)*pos,SEEK_SET);
-    bajo=fwrite(&cliente,sizeof(Cliente)*pos,1,f);
+    bajo=fwrite(&cliente,sizeof(Cliente),1,f);
+    fclose(f);
     return bajo;
 }
 

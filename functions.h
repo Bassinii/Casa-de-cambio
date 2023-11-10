@@ -67,7 +67,8 @@ void mostrarTodosLosClientes(){
 bool eliminarCliente(){
     ArchivoClientes archCli("Clientes.dat");
     Cliente cliente;
-    int dni,pos;
+    int dni,pos,posReg;
+    char opc[5];
     bool bajo=false,encontro=false;
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
     cin>>dni;
@@ -76,11 +77,23 @@ bool eliminarCliente(){
         cliente=archCli.leerRegistro(i);
         if(cliente.getDni()==dni){
             encontro=true;
-            bajo=archCli.bajaLogica(i,cliente);
-
+            posReg=i;
+            break;
         }
     }
     if(!encontro) cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;
+    if(encontro){
+        cliente.mostrar();
+        cout<<"BORRAR REGISTRO? (SI/NO)"<<endl;
+        cargarCadena(opc,5);
+        if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
+            bajo=archCli.bajaLogica(posReg,cliente);
+        }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
+            cout<<"NO SE HIZO LA BAJA"<<endl;
+        }else{
+            cout<<"OPCION INCORRECTA"<<endl;
+        }
+    }
     return bajo;
 }
 
