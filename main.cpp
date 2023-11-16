@@ -2,6 +2,9 @@
 #include <cstring>
 #include <ctime>
 
+#include "rlutil.h"
+using namespace rlutil;
+
 using namespace std;
 
 #include "prototypes.h"

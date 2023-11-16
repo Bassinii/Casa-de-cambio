@@ -38,6 +38,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="menus.h" />
 		<Unit filename="prototypes.h" />
+		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
