@@ -39,25 +39,26 @@
 
 1698350217 c:\users\brunno\desktop\casa de cambio\functions.h
 
-1699618426 source:c:\users\usuario\desktop\casa-de-cambio-main\main.cpp
+1700091872 source:c:\users\usuario\desktop\casa-de-cambio-main\main.cpp
 	<iostream>
 	<cstring>
 	<ctime>
+	"rlutil.h"
 	"prototypes.h"
 	"cFecha.h"
 	"classes.h"
 	"menus.h"
 	"functions.h"
 
-1699651849 c:\users\usuario\desktop\casa-de-cambio-main\prototypes.h
+1700091872 c:\users\usuario\desktop\casa-de-cambio-main\prototypes.h
 
-1699618426 c:\users\usuario\desktop\casa-de-cambio-main\cfecha.h
+1700091872 c:\users\usuario\desktop\casa-de-cambio-main\cfecha.h
 
-1699653133 c:\users\usuario\desktop\casa-de-cambio-main\classes.h
+1700321304 c:\users\usuario\desktop\casa-de-cambio-main\classes.h
 
-1699646973 c:\users\usuario\desktop\casa-de-cambio-main\menus.h
+1700091872 c:\users\usuario\desktop\casa-de-cambio-main\menus.h
 
-1699652633 c:\users\usuario\desktop\casa-de-cambio-main\functions.h
+1700255262 c:\users\usuario\desktop\casa-de-cambio-main\functions.h
 
 1699581386 source:c:\users\brunno\desktop\casa-de-cambio-main\main.cpp
 	<iostream>
@@ -113,4 +114,18 @@
 1700109847 c:\users\marco\onedrive\escritorio\casa-de-cambio-main (2)\casa-de-cambio-main\menus.h
 
 1700108248 c:\users\marco\onedrive\escritorio\casa-de-cambio-main (2)\casa-de-cambio-main\functions.h
+
+1700091872 c:\users\usuario\desktop\casa-de-cambio-main\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 

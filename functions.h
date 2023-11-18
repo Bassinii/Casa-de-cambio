@@ -105,16 +105,35 @@ bool eliminarCliente(){
 void buscarDni(){
     ArchivoClientes archCli("Clientes.dat");
     Cliente cliente;
-    int pos;
-    char nombreBusco[30],nombre[30];
-    pos=archCli.contarRegistros();
-    cout<<"INGRESAR NOMBRE DEL CLIENTE"<<endl;
-    cargarCadena(nombreBusco,30);
-    for(int i=0;i<pos;i++){
-        cliente=archCli.leerRegistro(i);
-        strcpy(nombre,cliente.getNombre());
-        if(strcmp(nombreBusco,nombre)==0){
+    int pos,dni;
+    char nombreBusco[30],nombre[30],opc[5];
+    bool encontro=false;
+    while(true){
+        pos=archCli.contarRegistros();
+        cout<<"INGRESAR NOMBRE DEL CLIENTE"<<endl;
+        cargarCadena(nombreBusco,30);
+        for(int i=0;i<pos;i++){
+            cliente=archCli.leerRegistro(i);
+            strcpy(nombre,cliente.getNombre());
+            if(strcmp(nombreBusco,nombre)==0){
+                dni=cliente.getDni();
+                encontro=true;
+            }
+        }
+        if(encontro){
+            cout<<"EL DNI DE "<<nombreBusco<<" ES: "<<dni<<endl;
+            break;
+        }else{
+            cout<<"NO SE ENCONTRO EL NOMBRE"<<endl;
+            cout<<"QUIERE HACER OTRA BUSQUEDA? (SI/NO)"<<endl;
+            cargarCadena(opc,5);
+            if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
 
+            }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
+                break;
+            }else{
+                cout<<"OPCION INCORRECTA"<<endl;
+            }
         }
     }
 }

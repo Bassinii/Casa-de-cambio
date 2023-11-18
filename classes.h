@@ -11,10 +11,12 @@ public:
     int getDni(){return dni;}
     int getTelefono(){return telefono;}
     bool getEstado(){return estado;}
-    char *getNombre(){return nombre;}
+    const char *getNombre(){return nombre;}
+    const char *getApellido(){return apellido;}
     ///setters
     void setTelefono(int telefono){this->telefono=telefono;}
     void setEstado(bool estado){this->estado=estado;}
+    void setDni(int dni){this->dni=dni;}
 };
 
 class Cliente : public Persona{
@@ -85,6 +87,21 @@ void Cliente::mostrar(){
     inscripcion.MostrarFecha();
     cout<<" ESTADO: "<<estado<<endl;
 }
+
+class Empleado : public Persona{
+private:
+    char cargo[30];
+    int cantidadVentas;
+public:
+    ///GETTERS
+    const char* getCargo(){return cargo;}
+    int getCantidadVentas(){return cantidadVentas;}
+    ///SETTERS
+    void setCargo(const char* cargo){strcpy(this->cargo,cargo);}
+    void setCantidadVentas(int cantidadVentas){this->cantidadVentas=cantidadVentas;}
+
+    void sumarVenta(){cantidadVentas++;} //suma una venta
+};
 
 class ArchivoClientes{
 private:
