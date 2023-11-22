@@ -429,7 +429,10 @@ int menuMonedas(){
                     }
 
                     if(SposicionY == 2){
-
+                        cls();
+                        cambiarCotizacion();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 3){

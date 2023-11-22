@@ -22,6 +22,7 @@ void buscarDni();
 ///MENU MONEDAS
 bool agregarMoneda();
 void mostrarMonedas();
+void cambiarCotizacion();
 bool eliminarMoneda();
 
 #endif // PROTOTYPES_H_INCLUDED

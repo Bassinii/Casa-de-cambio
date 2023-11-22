@@ -192,7 +192,7 @@ public:
     bool agregarRegistro(Cliente);
     Cliente leerRegistro(int);
     int contarRegistros();
-    bool bajaLogica(int,Cliente&);
+    bool modificarRegistro(int,Cliente&);
 };
 
 bool ArchivoClientes::agregarRegistro(Cliente cliente){
@@ -232,16 +232,15 @@ int ArchivoClientes::contarRegistros(){
 
 //Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
 //y lo escribe
-bool ArchivoClientes::bajaLogica(int pos, Cliente& cliente){
+bool ArchivoClientes::modificarRegistro(int pos, Cliente& cliente){
     FILE *f;
-    bool bajo;
-    cliente.setEstado(false);
+    bool modifico;
     f=fopen(nombre,"rb+");
     if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     fseek(f,sizeof(Cliente)*pos,SEEK_SET);
-    bajo=fwrite(&cliente,sizeof(Cliente),1,f);
+    modifico=fwrite(&cliente,sizeof(Cliente),1,f);
     fclose(f);
-    return bajo;
+    return modifico;
 }
 
 class ArchivoEmpleados{
@@ -254,7 +253,7 @@ public:
     bool agregarRegistro(Empleado);
     Empleado leerRegistro(int);
     int contarRegistros();
-    bool bajaLogica(int,Empleado&);
+    bool modificarRegistro(int,Empleado&);
 };
 
 bool ArchivoEmpleados::agregarRegistro(Empleado empleado){
@@ -294,16 +293,15 @@ int ArchivoEmpleados::contarRegistros(){
 
 //Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
 //y lo escribe
-bool ArchivoEmpleados::bajaLogica(int pos, Empleado& empleado){
+bool ArchivoEmpleados::modificarRegistro(int pos, Empleado& empleado){
     FILE *f;
-    bool bajo;
-    empleado.setEstado(false);
+    bool modifico;
     f=fopen(nombre,"rb+");
     if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     fseek(f,sizeof(Empleado)*pos,SEEK_SET);
-    bajo=fwrite(&empleado,sizeof(Empleado),1,f);
+    modifico=fwrite(&empleado,sizeof(Empleado),1,f);
     fclose(f);
-    return bajo;
+    return modifico;
 }
 
 class ArchivoMonedas{
@@ -316,7 +314,7 @@ public:
     bool agregarRegistro(Moneda);
     Moneda leerRegistro(int);
     int contarRegistros();
-    bool bajaLogica(int,Moneda&);
+    bool modificarRegistro(int,Moneda&);
 };
 
 bool ArchivoMonedas::agregarRegistro(Moneda moneda){
@@ -356,16 +354,15 @@ int ArchivoMonedas::contarRegistros(){
 
 //Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
 //y lo escribe
-bool ArchivoMonedas::bajaLogica(int pos, Moneda& moneda){
+bool ArchivoMonedas::modificarRegistro(int pos, Moneda& moneda){
     FILE *f;
-    bool bajo;
-    moneda.setEstado(false);
+    bool modifico;
     f=fopen(nombre,"rb+");
     if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
     fseek(f,sizeof(Moneda)*pos,SEEK_SET);
-    bajo=fwrite(&moneda,sizeof(Moneda),1,f);
+    modifico=fwrite(&moneda,sizeof(Moneda),1,f);
     fclose(f);
-    return bajo;
+    return modifico;
 }
 
 #endif // CLASSES_H_INCLUDED

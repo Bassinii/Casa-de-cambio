@@ -91,7 +91,8 @@ bool eliminarCliente(){
         cout<<"BORRAR CLIENTE? (SI/NO)"<<endl;
         cargarCadena(opc,5);
         if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
-            bajo=archCli.bajaLogica(posReg,cliente);
+            cliente.setEstado(false);
+            bajo=archCli.modificarRegistro(posReg,cliente);
         }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
             cout<<"NO SE HIZO LA BAJA"<<endl;
         }else{
@@ -165,6 +166,38 @@ void mostrarMonedas(){
     }
 }
 
+void cambiarCotizacion(){
+    ArchivoMonedas archMonedas("monedas.dat");
+    Moneda moneda;
+    char monedaCambiar[20];
+    int pos;
+    float compra,venta;
+    bool encontro=false;
+    pos=archMonedas.contarRegistros();
+    cout<<"----------------------------------"<<endl;
+    cout<<"-         CAMBIAR COTIZACION     -"<<endl;
+    cout<<"----------------------------------"<<endl;
+    cout<<"ELIGE UNA DIVISA A CAMBIAR"<<endl;
+    cargarCadena(monedaCambiar,20);
+    for(int i=0;i<pos;i++){
+        moneda=archMonedas.leerRegistro(i);
+        if(strcmp(moneda.getDivisa(),monedaCambiar)==0&&moneda.getEstado()){
+            cout<<"INGRESE EL NUEVO PRECIO COMPRA"<<endl;
+            cin>>compra;
+            cout<<"INGRESE EL NUEVO PRECIO VENTA"<<endl;
+            cin>>venta;
+            moneda.setCompra(compra);
+            moneda.setVenta(venta);
+            archMonedas.modificarRegistro(i,moneda);
+            encontro=true;
+            break;
+        }
+    }
+    if(!encontro){
+        cout<<"NO SE PUDO ENCONTRAR LA DIVISA"<<endl;
+    }
+}
+
 bool eliminarMoneda(){
     ArchivoMonedas archMonedas("monedas.dat");
     Moneda moneda;
@@ -188,7 +221,8 @@ bool eliminarMoneda(){
         cout<<"BORRAR MONEDA? (SI/NO)"<<endl;
         cargarCadena(opc,5);
         if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
-            bajo=archMonedas.bajaLogica(posReg,moneda);
+            moneda.setEstado(false);
+            bajo=archMonedas.modificarRegistro(posReg,moneda);
         }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
             cout<<"NO SE HIZO LA BAJA"<<endl;
         }else{
