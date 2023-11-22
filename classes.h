@@ -114,11 +114,11 @@ public:
 };
 
 void Empleado::cargar(){
-    cout<<"INGRESAR EL NOMBRE DEL CLIENTE"<<endl;
+    cout<<"INGRESAR EL NOMBRE DEL EMPLEADO"<<endl;
     cargarCadena(nombre,30);
-    cout<<"INGRESAR EL APELLIDO DEL CLIENTE"<<endl;
+    cout<<"INGRESAR EL APELLIDO DEL EMPLEADO"<<endl;
     cargarCadena(apellido,30);
-    cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    cout<<"INGRESAR EL DNI DEL EMPLEADO "<<endl;
     cin>>dni;
 }
 

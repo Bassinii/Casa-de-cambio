@@ -213,7 +213,7 @@ int menuClientes(){
 
                     if(SposicionY == 4){
                         cls();
-                        buscarDni();
+                        buscarDniCliente();
                         system("pause");
                         cls();
                     }
@@ -322,22 +322,38 @@ int menuEmpleados(){
             /// Tecla ENTER
             case 1:
                     if(SposicionY == 0){
-
+                        cls();
+                        agregarEmpleado();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 1){
-
+                        cls();
+                        mostrarEmpleadoPorDni();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 2){
-
+                        cls();
+                        mostrarTodosLosEmpleados();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 3){
+                        cls();
+                        eliminarEmpleado();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 4){
-
+                        cls();
+                        buscarDniEmpleado();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 5){

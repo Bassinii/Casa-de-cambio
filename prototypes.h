@@ -17,7 +17,14 @@ bool agregarCliente();
 void mostrarClientePorDni();
 void mostrarTodosLosClientes();
 bool eliminarCliente();
-void buscarDni();
+void buscarDniCliente();
+
+///MENU EMPLEADOS
+bool agregarEmpleado();
+void mostrarEmpleadoPorDni();
+void mostrarTodosLosEmpleados();
+bool eliminarEmpleado();
+void buscarDniEmpleado();
 
 ///MENU MONEDAS
 bool agregarMoneda();
