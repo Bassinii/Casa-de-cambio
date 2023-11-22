@@ -11,6 +11,8 @@ int menuEmpleados();
 int menuTransacciones();
 int menuMonedas();
 int menuConfiguraciones();
+int menuCopiaSeguridad();
+int menuRestaurar();
 
 ///MENU CLIENTES
 bool agregarCliente();
@@ -31,5 +33,11 @@ bool agregarMoneda();
 void mostrarMonedas();
 void cambiarCotizacion();
 bool eliminarMoneda();
+
+///MENU CONFIG
+bool bajaFisicaArchClientes();
+bool bajaFisicaArchEmpleados();
+bool bajaFisicaArchTransacciones();
+bool bajaFisicaArchMonedas();
 
 #endif // PROTOTYPES_H_INCLUDED

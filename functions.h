@@ -354,4 +354,101 @@ bool eliminarMoneda(){
     return bajo;
 }
 
+///MENU CONFIG
+bool bajaFisicaArchClientes(){
+    FILE* file, * fileBak;
+    Moneda reg;
+
+    file = fopen("Clientes.dat", "rb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("Clientes.bak", "wb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, file) == 1) {
+        if (reg.getEstado() == true) {
+            fwrite(&reg, sizeof reg, 1, fileBak);
+        }
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool bajaFisicaArchEmpleados(){
+    FILE* file, * fileBak;
+    Moneda reg;
+
+    file = fopen(".dat", "rb");
+    if (file == NULL)return false;
+
+    fileBak = fopen(".bak", "wb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, file) == 1) {
+        if (reg.getEstado() == true) {
+            fwrite(&reg, sizeof reg, 1, fileBak);
+        }
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool bajaFisicaArchTransacciones(){
+    FILE* file, * fileBak;
+    Moneda reg;
+
+    file = fopen(".dat", "rb");
+    if (file == NULL)return false;
+
+    fileBak = fopen(".bak", "wb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, file) == 1) {
+        if (reg.getEstado() == true) {
+            fwrite(&reg, sizeof reg, 1, fileBak);
+        }
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool bajaFisicaArchMonedas(){
+    FILE* file, * fileBak;
+    Moneda reg;
+
+    file = fopen("monedas.dat", "rb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("monedas.bak", "wb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, file) == 1) {
+        if (reg.getEstado() == true) {
+            fwrite(&reg, sizeof reg, 1, fileBak);
+        }
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
 #endif // FUNCTIONS_H_INCLUDED

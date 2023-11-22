@@ -14,6 +14,8 @@ using namespace std;
 #include "functions.h"
 
 int main(){
+    SetConsoleTitle("CHANGE COIN");
+    setBackgroundColor(CYAN);
     menuPrincipal();
     return 0;
 }
