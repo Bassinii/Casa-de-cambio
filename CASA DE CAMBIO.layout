@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Release" />
-	<File name="menus.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Debug" />
+	<File name="classes.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3278" topLine="123" />
-		</Cursor>
-	</File>
-	<File name="classes.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4380" topLine="0" />
+			<Cursor1 position="4352" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="3" />
-			<Collapse line="19" />
-			<Collapse line="40" />
-			<Collapse line="75" />
-			<Collapse line="88" />
-			<Collapse line="101" />
-			<Collapse line="114" />
-			<Collapse line="125" />
-			<Collapse line="138" />
+			<Collapse line="21" />
+			<Collapse line="42" />
+			<Collapse line="79" />
+			<Collapse line="92" />
+			<Collapse line="115" />
+			<Collapse line="124" />
+			<Collapse line="133" />
+			<Collapse line="159" />
+			<Collapse line="169" />
+			<Collapse line="175" />
+			<Collapse line="184" />
+			<Collapse line="197" />
+			<Collapse line="201" />
+			<Collapse line="210" />
+			<Collapse line="221" />
+			<Collapse line="234" />
+			<Collapse line="246" />
+			<Collapse line="259" />
+			<Collapse line="272" />
+			<Collapse line="283" />
+			<Collapse line="296" />
+			<Collapse line="308" />
+			<Collapse line="321" />
+			<Collapse line="334" />
+			<Collapse line="345" />
+			<Collapse line="358" />
 		</Folding>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -28,19 +41,35 @@
 			<Cursor1 position="243" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="prototypes.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="410" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="functions.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3667" topLine="118" />
-		</Cursor>
-	</File>
 	<File name="cFecha.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3750" topLine="135" />
+			<Cursor1 position="3750" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="prototypes.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="482" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="functions.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5586" topLine="14" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="19" />
+			<Collapse line="32" />
+			<Collapse line="54" />
+			<Collapse line="70" />
+			<Collapse line="104" />
+			<Collapse line="141" />
+			<Collapse line="153" />
+			<Collapse line="167" />
+		</Folding>
+	</File>
+	<File name="menus.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12002" topLine="417" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

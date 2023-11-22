@@ -18,7 +18,7 @@ void cargarCadena(char *palabra, int tamano){
 ///MENU CLIENTES
 //Agrega un cliente, si se pudo agregar retorna true, sino false
 bool agregarCliente(){
-    ArchivoClientes arch("Clientes.dat");
+    ArchivoClientes arch("clientes.dat");
     Cliente cliente;
     bool escribio;
     cout<<"----------------------------------"<<endl;
@@ -31,7 +31,7 @@ bool agregarCliente(){
 
 //Muestra el cliente dependiendo su numero de dni
 void mostrarClientePorDni(){
-    ArchivoClientes arch("Clientes.dat");
+    ArchivoClientes arch("clientes.dat");
     Cliente cliente;
     int tam,dni;
     bool noMostro=true;
@@ -53,7 +53,7 @@ void mostrarClientePorDni(){
 
 //muestra todos los clientes
 void mostrarTodosLosClientes(){
-    ArchivoClientes arch("Clientes.dat");
+    ArchivoClientes arch("clientes.dat");
     Cliente cliente;
     int tam;
     tam=arch.contarRegistros();
@@ -69,7 +69,7 @@ void mostrarTodosLosClientes(){
 //baja logica de un cliente, se setea su estado en false para que las funciones
 //mostrarClientePorDni() y mostrarTodosLosClientes no lo listen por pantalla
 bool eliminarCliente(){
-    ArchivoClientes archCli("Clientes.dat");
+    ArchivoClientes archCli("clientes.dat");
     Cliente cliente;
     int dni,pos,posReg;
     char opc[5];
@@ -103,7 +103,7 @@ bool eliminarCliente(){
 
 //funcion para saber el dni del un cliente si se desconoce este.
 void buscarDni(){
-    ArchivoClientes archCli("Clientes.dat");
+    ArchivoClientes archCli("clientes.dat");
     Cliente cliente;
     int pos,dni;
     char nombreBusco[30],nombre[30],opc[5];
@@ -138,5 +138,64 @@ void buscarDni(){
     }
 }
 
+///MENU MONEDAS
+bool agregarMoneda(){
+    ArchivoMonedas archMonedas("monedas.dat");
+    Moneda moneda;
+    bool escribio;
+    cout<<"----------------------------------"<<endl;
+    cout<<"-         AGREGAR MONEDA         -"<<endl;
+    cout<<"----------------------------------"<<endl;
+    moneda.cargar();
+    escribio=archMonedas.agregarRegistro(moneda);
+    return escribio;
+}
+
+void mostrarMonedas(){
+    ArchivoMonedas archMonedas("monedas.dat");
+    Moneda moneda;
+    int pos;
+    pos=archMonedas.contarRegistros();
+    for(int i=0;i<pos;i++){
+        moneda=archMonedas.leerRegistro(i);
+        if(moneda.getEstado()){
+            moneda.mostrar();
+            cout<<endl;
+        }
+    }
+}
+
+bool eliminarMoneda(){
+    ArchivoMonedas archMonedas("monedas.dat");
+    Moneda moneda;
+    int pos,posReg;
+    char opc[5],monedaBuscada[20];
+    bool bajo=false,encontro=false;
+    pos=archMonedas.contarRegistros();
+    cout<<"INGRESAR EL NOMBRE DE LA DIVISA"<<endl;
+    cargarCadena(monedaBuscada,20);
+    for(int i=0;i<pos;i++){
+        moneda=archMonedas.leerRegistro(i);
+        if(strcmp(moneda.getDivisa(),monedaBuscada)==0){
+            encontro=true;
+            posReg=i;
+            break;
+        }
+    }
+    if(!encontro) cout<<"NO SE ENCONTRO MONEDA CON ESE NOMBRE"<<endl;
+    if(encontro){
+        moneda.mostrar();
+        cout<<"BORRAR MONEDA? (SI/NO)"<<endl;
+        cargarCadena(opc,5);
+        if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
+            bajo=archMonedas.bajaLogica(posReg,moneda);
+        }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
+            cout<<"NO SE HIZO LA BAJA"<<endl;
+        }else{
+            cout<<"OPCION INCORRECTA"<<endl;
+        }
+    }
+    return bajo;
+}
 
 #endif // FUNCTIONS_H_INCLUDED

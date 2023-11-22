@@ -19,4 +19,9 @@ void mostrarTodosLosClientes();
 bool eliminarCliente();
 void buscarDni();
 
+///MENU MONEDAS
+bool agregarMoneda();
+void mostrarMonedas();
+bool eliminarMoneda();
+
 #endif // PROTOTYPES_H_INCLUDED

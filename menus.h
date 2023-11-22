@@ -182,14 +182,16 @@ int menuClientes(){
             /// Tecla ENTER
             case 1:
                     if(SposicionY == 0){
-                       if(agregarCliente()) cout<<"SE AGREGO EL CLIENTE CORRECTAMENTE"<<endl;
+                        cls();
+                        if(agregarCliente()) cout<<"SE AGREGO EL CLIENTE CORRECTAMENTE"<<endl;
                         else cout<<"NO SE PUDO AGREGAR EL CLIENTE"<<endl;
                         system("pause");
                         cls();
                     }
 
                     if(SposicionY == 1){
-                       mostrarClientePorDni();
+                        cls();
+                        mostrarClientePorDni();
                         system("pause");
                         cls();
                     }
@@ -202,7 +204,8 @@ int menuClientes(){
                     }
 
                     if(SposicionY == 3){
-                       if(eliminarCliente()) cout<<"SE ELIMINO EL CLIENTE CORRECTAMENTE"<<endl;
+                        cls();
+                        if(eliminarCliente()) cout<<"SE ELIMINO EL CLIENTE CORRECTAMENTE"<<endl;
                         else cout<<"NO SE HIZO LA BAJA DEL CLIENTE"<<endl;
                         system("pause");
                         cls();
@@ -372,12 +375,14 @@ int menuMonedas(){
         locate (x, y+3);
         cout<<"-    AGREGAR MONEDA     -";
         locate (x, y+4);
-        cout<<"-    QUITAR MONEDA      -";
+        cout<<"-    MOSTRAR MONEDAS    -";
         locate (x, y+5);
         cout<<"-    CAMBIAR COTIZACION -";
         locate (x, y+6);
-        cout<<"-    SALIR              -";
+        cout<<"-    ELIMINAR MONEDA    -";
         locate (x, y+7);
+        cout<<"-    SALIR              -";
+        locate (x, y+8);
         cout<<"-------------------------";
 
         locate(43, 13 + SposicionY);
@@ -401,7 +406,7 @@ int menuMonedas(){
                 locate(43, 13 + SposicionY);
                 cout << " " << endl;
 
-                if (SposicionY < 3) {
+                if (SposicionY < 4) {
                     SposicionY++;
                 }
 
@@ -409,11 +414,18 @@ int menuMonedas(){
             /// Tecla ENTER
             case 1:
                     if(SposicionY == 0){
-
+                        cls();
+                        if(agregarMoneda()) cout<<"SE AÑADIO LA MONEDA CORRECTAMENTE"<<endl;
+                        else cout<<"NO SE PUDO AGREGAR LA MONEDA"<<endl;
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 1){
-
+                        cls();
+                        mostrarMonedas();
+                        system("pause");
+                        cls();
                     }
 
                     if(SposicionY == 2){
@@ -421,6 +433,14 @@ int menuMonedas(){
                     }
 
                     if(SposicionY == 3){
+                        cls();
+                        if(eliminarMoneda()) cout<<"SE ELIMINO LA MONEDA CORRECTAMENTE"<<endl;
+                        else cout<<"NO SE HIZO LA BAJA DE LA MONEDA"<<endl;
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 4){
                         cls();
                         return 0;
                     }
