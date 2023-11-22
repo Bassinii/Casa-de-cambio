@@ -177,8 +177,21 @@ class Transaccion{
 private:
     int ID,dniCliente,dniEmpleado;
     float importe;
+    char nombreCliente[30],nombreEmpleado[30];
     Fecha fecha;
 public:
+    ///GETTERS
+    const int getID(){return ID;}
+    const int getDniCliente(){return dniCliente;}
+    const int getDniEmpleado(){return dniEmpleado;}
+    const float getImporte(){return importe;}
+    const char* getNombreCliente(){return nombreCliente;}
+    const char* getNombreEmpleado(){return nombreEmpleado;}
+    const Fecha& getFecha(){return fecha;}
+    ///SETTERS
+    void setID(int ID){this->ID=ID;}
+    void setDniCliente(int dniCliente){this->dniCliente=dniCliente;}
+    void setDniEmpleado(int dniEmpleado){this->dniEmpleado=dniEmpleado;}
 
 };
 

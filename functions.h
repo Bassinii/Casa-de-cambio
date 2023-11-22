@@ -20,6 +20,7 @@ void cargarCadena(char *palabra, int tamano){
 bool agregarCliente(){
     ArchivoClientes arch("clientes.dat");
     Cliente cliente;
+    arch.agregarRegistro(cliente);
     bool escribio;
     cout<<"----------------------------------"<<endl;
     cout<<"-         AGREGAR CLIENTE        -"<<endl;
@@ -359,10 +360,10 @@ bool bajaFisicaArchClientes(){
     FILE* file, * fileBak;
     Moneda reg;
 
-    file = fopen("Clientes.dat", "rb");
+    file = fopen("clientes.dat", "rb");
     if (file == NULL)return false;
 
-    fileBak = fopen("Clientes.bak", "wb");
+    fileBak = fopen("clientes.bak", "wb");
     if (fileBak == NULL) {
         cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
         fclose(file);
