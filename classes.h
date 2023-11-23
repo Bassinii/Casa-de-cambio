@@ -473,10 +473,14 @@ bool Transaccion::cargar(){
     Transaccion transaccion;
     Cliente cliente;
     Empleado empleado;
-    int dia,mes,anio;
+    int dia,mes,anio,posMoneda,posCliente,posEmpleado,cantidad,dniClienteBus,dniEmpleadoBus;
+    float precioCompra,precioVenta;
     char Ctipo[8],Cdivisa[20],opc[4];
-    bool pedir=true;
+    bool pedir=true,encontroMoneda=false,encontroCliente=false,encontroEmpleado=false;
     estado=true;
+    posMoneda=archMonedas.contarRegistros();
+    posCliente=archClientes.contarRegistros();
+    posEmpleado=archEmpleados.contarRegistros();
     cout<<"INGRESAR TIPO DE TRANSACCION(compra/venta)"<<endl;
     cargarCadena(Ctipo,8);
     if(strcmp(Ctipo,"compra")==0){
@@ -489,13 +493,47 @@ bool Transaccion::cargar(){
     }
     cout<<"INGRESAR TIPO DE DIVISA"<<endl;
     cargarCadena(Cdivisa,20);
-    strcpy(this->divisa,Cdivisa);
-    cout<<"INGRESAR CANTIDAD A COMPRAR"<<endl;
-    cin>>importe;
+    for(int a=0;a<posMoneda;a++){
+        moneda=archMonedas.leerRegistro(a);
+        if(strcmp(moneda.getDivisa(),Cdivisa)==0){
+            precioCompra=moneda.getCompra();
+            precioVenta=moneda.getVenta();
+            strcpy(this->divisa,moneda.getDivisa());
+            encontroMoneda=true;
+        }
+    }
+    if(!encontroMoneda){
+        cout<<"NO SE ENOCONTRO LA MONEDA, INTENTE NUEVAMENTE"<<endl;
+        return false;
+    }
+
+    cout<<"INGRESAR CANTIDAD"<<endl;
+    cin>>cantidad;
+    if(tipo){
+        importe=cantidad*precioVenta;
+    }
+    if(!tipo){
+        importe=cantidad*precioCompra;
+    }
+    cout<<"EL IMPORTE ES DE: "<<importe<<endl;
+
     cout<<"INGRESAR DNI DE EL CLIENTE"<<endl;
-    cin>>dniCliente;
+    cin>>dniClienteBus;
+    for(int b=0;b<posCliente;b++){
+        cliente=archClientes.leerRegistro(b);
+        if(cliente.getDni()==dniClienteBus){
+            this->dniCliente=dniClienteBus;
+            encontroCliente=true;
+        }
+    }
+    if(!encontroCliente){
+        cout<<"NO SE ENOCONTRO EL CLIENTE, INTENTE NUEVAMENTE"<<endl;
+        return false;
+    }
+
     cout<<"INGRESAR DNI DE EL EMPLEADO"<<endl;
     cin>>dniEmpleado;
+
     while(pedir){
         cout<<"LA FECHA DE LA TRANSACCION ES LA ACTUAL?(si/no)"<<endl;
         cargarCadena(opc,4);
