@@ -176,6 +176,52 @@ void buscarDniCliente(){
     }
 }
 
+void clienteMasTransacciones(){
+    ArchivoClientes archClientes("clientes.dat");
+    Cliente cliente;
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion,*v;
+    int posTran,posCli,transaccionesCliente,dnimax,transMax,a=0;
+    char nombremax[30];
+    posCli=archClientes.contarRegistros();
+    posTran=archTransacciones.contarRegistros();
+    for(int i=0;i<posCli;i++){
+        cliente=archClientes.leerRegistro(i);
+        transaccionesCliente=0;
+        for(int j=0;j<posTran;j++){
+            transaccion=archTransacciones.leerRegistro(j);
+            if(transaccion.getDniCliente()==cliente.getDni()){
+                transaccionesCliente++;
+            }
+        }
+        if(i==0){
+            dnimax=cliente.getDni();
+            transMax=transaccionesCliente;
+            strcpy(nombremax,cliente.getNombre());
+        }else if(transaccionesCliente>transMax){
+            dnimax=cliente.getDni();
+            transMax=transaccionesCliente;
+            strcpy(nombremax,cliente.getNombre());
+        }
+    }
+    v=new Transaccion[transMax];
+    for(int h=0;h<posTran;h++){
+        transaccion=archTransacciones.leerRegistro(h);
+        if(transaccion.getDniCliente()==dnimax){
+            v[a]=transaccion;
+            a++;
+        }
+    }
+
+    cout<<"EL CLIENTE CON MAS TRANSACCIONES ES: "<<nombremax<<endl<<endl;
+
+    for(int b=0;b<transMax;b++){
+        v[b].mostrar();
+        cout<<endl;
+    }
+    delete[] v;
+}
+
 ///MENU EMPLEADOS
 bool agregarEmpleado(){
     ArchivoEmpleados archEmpleados("empleados.dat");
@@ -320,14 +366,26 @@ void buscarDniEmpleado(){
 ///MENU TRANSACCIONES
 bool crearTransaccion(){
     ArchivoTransacciones archTransacciones("transacciones.dat");
+    ArchivoClientes archClientes("clientes.dat");
     Transaccion transaccion;
+    Cliente cliente;
+    int pos,dniCliente;
+    pos=archClientes.contarRegistros();
     bool escribio=false,cargo;
     cout<<"----------------------------------"<<endl;
     cout<<"-         AGREGAR TRANSACCION    -"<<endl;
     cout<<"----------------------------------"<<endl;
     cargo=transaccion.cargar();
+    dniCliente=transaccion.getDniCliente();
     if(cargo){
         escribio=archTransacciones.agregarRegistro(transaccion);
+        for(int i=0;i<pos;i++){
+            cliente=archClientes.leerRegistro(i);
+            if(cliente.getDni()==dniCliente){
+                cliente.agregarTransaccion();
+                archClientes.modificarRegistro(i,cliente);
+            }
+        }
     }
     return escribio;
 }

@@ -60,7 +60,7 @@
 
 1700668414 c:\users\usuario\desktop\casa-de-cambio-main\functions.h
 
-1700718943 source:c:\users\brunno\desktop\casa-de-cambio-main\main.cpp
+1700737566 source:c:\users\brunno\desktop\casa-de-cambio-main\main.cpp
 	<iostream>
 	<cstring>
 	<ctime>
@@ -71,15 +71,15 @@
 	"menus.h"
 	"functions.h"
 
-1700718943 c:\users\brunno\desktop\casa-de-cambio-main\prototypes.h
+1700738510 c:\users\brunno\desktop\casa-de-cambio-main\prototypes.h
 
-1700718943 c:\users\brunno\desktop\casa-de-cambio-main\cfecha.h
+1700737566 c:\users\brunno\desktop\casa-de-cambio-main\cfecha.h
 
-1700724031 c:\users\brunno\desktop\casa-de-cambio-main\classes.h
+1700740091 c:\users\brunno\desktop\casa-de-cambio-main\classes.h
 
-1700722180 c:\users\brunno\desktop\casa-de-cambio-main\menus.h
+1700738480 c:\users\brunno\desktop\casa-de-cambio-main\menus.h
 
-1700722730 c:\users\brunno\desktop\casa-de-cambio-main\functions.h
+1700740139 c:\users\brunno\desktop\casa-de-cambio-main\functions.h
 
 1700106216 source:c:\users\marco\onedrive\escritorio\casa-de-cambio-main (2)\casa-de-cambio-main\main.cpp
 	<iostream>
@@ -130,7 +130,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1700718943 c:\users\brunno\desktop\casa-de-cambio-main\rlutil.h
+1700737566 c:\users\brunno\desktop\casa-de-cambio-main\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>

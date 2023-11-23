@@ -27,6 +27,7 @@ void mostrarEmpleadoPorDni();
 void mostrarTodosLosEmpleados();
 bool eliminarEmpleado();
 void buscarDniEmpleado();
+void clienteMasTransacciones();
 
 ///MENU TRANSACCIONES
 bool crearTransaccion();

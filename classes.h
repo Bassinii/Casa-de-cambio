@@ -22,14 +22,12 @@ public:
 class Cliente : public Persona{
 private:
     int cantidadTransacciones;
-    char monedaPreferida[30];
     Fecha inscripcion;
 public:
     ///CONSTRUCTOR CON PARAMETROS POR OMISIÓN
-    Cliente(const char *nombre="N/A", const char *apellido="N/A", const char *monedaPreferida="NINGUNA", int cantidadTransacciones=0, bool estado=true){
+    Cliente(const char *nombre="N/A", const char *apellido="N/A", int cantidadTransacciones=0, bool estado=true){
         strcpy(this->nombre,nombre);
         strcpy(this->apellido,apellido);
-        strcpy(this->monedaPreferida,monedaPreferida);
         this->cantidadTransacciones=cantidadTransacciones;
         this->estado=estado;
     }
@@ -37,7 +35,9 @@ public:
     ///METODOS
     void cargar();
     void mostrar();
-
+    void agregarTransaccion(){
+        cantidadTransacciones++;
+    }
 };
 
 void Cliente::cargar(){
@@ -84,7 +84,6 @@ void Cliente::mostrar(){
     cout<<" DNI: "<<dni<<endl;
     cout<<" TELEFONO: "<<telefono<<endl;
     cout<<" CANTIDAD DE OPERACIONES: "<<cantidadTransacciones<<endl;
-    cout<<" MONEDA PREFERIDA: "<<monedaPreferida<<endl;
     cout<<" FECHA DE INSCRIPCION: ";
     inscripcion.MostrarFecha();
     cout<<" ESTADO: "<<estado<<endl<<endl;
@@ -474,9 +473,9 @@ bool Transaccion::cargar(){
     Transaccion transaccion;
     Cliente cliente;
     Empleado empleado;
-    int dia,mes,anio,posMoneda;
+    int dia,mes,anio;
     char Ctipo[8],Cdivisa[20],opc[4];
-    bool pedir=true,cargo;
+    bool pedir=true;
     estado=true;
     cout<<"INGRESAR TIPO DE TRANSACCION(compra/venta)"<<endl;
     cargarCadena(Ctipo,8);
@@ -519,8 +518,7 @@ bool Transaccion::cargar(){
             cout<<"OPCION INVALIDA"<<endl;
         }
     }
-    cout<<"INGRESAR ID DE LA TRANSACCION"<<endl;
-    cin>>ID;
+    ID=archTransacciones.contarRegistros();
     return true;
 }
 

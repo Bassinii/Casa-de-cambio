@@ -7,7 +7,6 @@ int menuPrincipal(){
     int SposicionY = 0;
 
     while(true){
-        int opc;
         const int x = 47;
         int y = 10;
 
@@ -123,7 +122,6 @@ int menuPrincipal(){
 int menuClientes(){
     int SposicionY = 0;
     while(true){
-        int opc;
         const int x = 40;
         int y = 10;
 
@@ -144,8 +142,10 @@ int menuClientes(){
         locate (x, y+7);
         cout<<"-     BUSCAR DNI POR NOMBRE      -";
         locate (x, y+8);
-        cout<<"-     SALIR                      -";
+        cout<<"-     CLIENTE MAS TRANSACCIONES  -";
         locate (x, y+9);
+        cout<<"-     SALIR                      -";
+        locate (x, y+10);
         cout<<"----------------------------------";
 
         locate(43, 13 + SposicionY);
@@ -169,7 +169,7 @@ int menuClientes(){
                 locate(43, 13 + SposicionY);
                 cout << " " << endl;
 
-                if (SposicionY < 5) {
+                if (SposicionY < 6) {
                     SposicionY++;
                 }
 
@@ -214,6 +214,13 @@ int menuClientes(){
                     }
 
                     if(SposicionY == 5){
+                        cls();
+                        clienteMasTransacciones();
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 6){
                        cls();
                         return 0;
                     }
@@ -262,7 +269,6 @@ int menuEmpleados(){
         int SposicionY = 0;
 
         while(true){
-        int opc;
         const int x = 40;
         int y = 10;
 
@@ -369,7 +375,6 @@ int menuTransacciones(){
 int SposicionY= 0;
 
     while(true){
-        int opc;
         const int x = 40;
         int y = 10;
 
@@ -477,7 +482,6 @@ int menuMonedas(){
         int SposicionY= 0;
 
     while(true){
-        int opc;
         const int x = 47;
         int y = 10;
 
@@ -575,7 +579,6 @@ int menuMonedas(){
 int menuConfiguraciones(){
         int SposicionY = 0;
     while(true){
-        int opc;
         const int x = 46;
         int y = 10;
 
@@ -654,7 +657,6 @@ int menuCopiaSeguridad(){
     int SposicionY = 0;
 
     while(true){
-        int opc;
         const int x = 47;
         int y = 10;
 
@@ -763,7 +765,6 @@ int menuRestaurar(){
     int SposicionY= 0;
 
     while(true){
-        int opc;
         const int x = 47;
         int y = 10;
 
