@@ -20,7 +20,6 @@ void cargarCadena(char *palabra, int tamano){
 bool agregarCliente(){
     ArchivoClientes arch("clientes.dat");
     Cliente cliente;
-    arch.agregarRegistro(cliente);
     bool escribio;
     cout<<"----------------------------------"<<endl;
     cout<<"-         AGREGAR CLIENTE        -"<<endl;
@@ -34,20 +33,31 @@ bool agregarCliente(){
 void mostrarClientePorDni(){
     ArchivoClientes arch("clientes.dat");
     Cliente cliente;
+    int y = 10;
     int tam,dni;
     bool noMostro=true;
     tam=arch.contarRegistros();
+
+    if(tam == 0) {
+        locate(40, y);
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+    locate(40, y);
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    locate(40, y+1);
     cin>>dni;
     for(int i=0;i<tam;i++){
         cliente=arch.leerRegistro(i);
         if(cliente.getDni()==dni&&cliente.getEstado()){
+            ///locate(40, y+3);
             cliente.mostrar();
             cout<<endl;
             noMostro=false;
         }
     }
     if(noMostro){
+        locate(40, 10);
         cout<<"NO SE ENCONTRO EL DNI"<<endl;
     }
 }
@@ -58,6 +68,12 @@ void mostrarTodosLosClientes(){
     Cliente cliente;
     int tam;
     tam=arch.contarRegistros();
+
+    if(tam == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
     for(int i=0;i<tam;i++){
         cliente=arch.leerRegistro(i);
         if(cliente.getEstado()){
@@ -72,11 +88,20 @@ void mostrarTodosLosClientes(){
 bool eliminarCliente(){
     ArchivoClientes archCli("clientes.dat");
     Cliente cliente;
+    int y = 10;
     int dni,pos,posReg;
     char opc[5];
     bool bajo=false,encontro=false;
     pos=archCli.contarRegistros();
+
+    if(pos == 0) {
+        locate(40, y);
+        cout<< "NO HAY REGISTROS" <<endl;
+        return 0;
+    }
+    locate(40, y);
     cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+    locate(40, y+1);
     cin>>dni;
     for(int i=0;i<pos;i++){
         cliente=archCli.leerRegistro(i);
@@ -95,8 +120,10 @@ bool eliminarCliente(){
             cliente.setEstado(false);
             bajo=archCli.modificarRegistro(posReg,cliente);
         }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
+            locate(40, 10);
             cout<<"NO SE HIZO LA BAJA"<<endl;
         }else{
+            locate(40, 10);
             cout<<"OPCION INCORRECTA"<<endl;
         }
     }
@@ -107,12 +134,21 @@ bool eliminarCliente(){
 void buscarDniCliente(){
     ArchivoClientes archCli("clientes.dat");
     Cliente cliente;
+    int y = 10;
     int pos,dni;
     char nombreBusco[30],nombre[30],opc[5];
     bool encontro=false;
     while(true){
         pos=archCli.contarRegistros();
+
+        if(pos == 0) {
+            cout<< "NO HAY REGISTROS" <<endl;
+            locate(40, y);
+            return;
+        }
+        locate(40, y);
         cout<<"INGRESAR NOMBRE DEL CLIENTE"<<endl;
+        locate(40, y+1);
         cargarCadena(nombreBusco,30);
         for(int i=0;i<pos;i++){
             cliente=archCli.leerRegistro(i);
@@ -146,7 +182,7 @@ bool agregarEmpleado(){
     Empleado empleado;
     bool escribio;
     cout<<"----------------------------------"<<endl;
-    cout<<"-         AGREGAR CLIENTE        -"<<endl;
+    cout<<"-         AGREGAR EMPLEADO        -"<<endl;
     cout<<"----------------------------------"<<endl;
     empleado.cargar();
     escribio=archEmpleados.agregarRegistro(empleado);
@@ -159,7 +195,13 @@ void mostrarEmpleadoPorDni(){
     int tam,dni;
     bool noMostro=true;
     tam=archEmpleados.contarRegistros();
-    cout<<"INGRESAR EL DNI DEL CLIENTE"<<endl;
+
+    if(tam == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
+    cout<<"INGRESAR EL DNI DEL EMPLEADO"<<endl;
     cin>>dni;
     for(int i=0;i<tam;i++){
         empleado=archEmpleados.leerRegistro(i);
@@ -184,7 +226,7 @@ void mostrarTodosLosEmpleados(){
         cout<< "NO HAY REGISTROS";
         return;
     }
-    system("pause");
+
     for(int i=0;i<tam;i++){
         empleado=archEmpleados.leerRegistro(i);
         if(empleado.getEstado()){
@@ -201,6 +243,12 @@ bool eliminarEmpleado(){
     char opc[5];
     bool bajo=false,encontro=false;
     pos=archEmpleados.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return 0;
+    }
+
     cout<<"INGRESAR EL DNI DEL EMPLEADO"<<endl;
     cin>>dni;
     for(int i=0;i<pos;i++){
@@ -236,6 +284,11 @@ void buscarDniEmpleado(){
     bool encontro=false;
     while(true){
         pos=archEmpleados.contarRegistros();
+
+        if(pos == 0) {
+            cout<< "NO HAY REGISTROS" <<endl;
+            return;
+        }
         cout<<"INGRESAR NOMBRE DEL EMPLEADO"<<endl;
         cargarCadena(nombreBusco,30);
         for(int i=0;i<pos;i++){
@@ -285,6 +338,12 @@ void mostrarTransaccionPorID(){
     int tam,id;
     bool noMostro=true;
     tam=archTransacciones.contarRegistros();
+
+    if(tam == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
     cout<<"INGRESAR EL ID DE LA TRANSACCION"<<endl;
     cin>>id;
     for(int i=0;i<tam;i++){
@@ -305,6 +364,12 @@ void mostrarTodasLasTransacciones(){
     Transaccion transaccion;
     int pos;
     pos=archTransacciones.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
     for(int i=0;i<pos;i++){
         transaccion=archTransacciones.leerRegistro(i);
         transaccion.mostrar();
@@ -319,6 +384,12 @@ bool eliminarTransaccion(){
     char opc[5];
     bool bajo=false,encontro=false;
     pos=archTransacciones.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return 0;
+    }
+
     cout<<"INGRESAR EL ID DE LA TRANSACCION"<<endl;
     cin>>id;
     for(int i=0;i<pos;i++){
@@ -370,6 +441,12 @@ void mostrarMonedas(){
     Moneda moneda;
     int pos;
     pos=archMonedas.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
     for(int i=0;i<pos;i++){
         moneda=archMonedas.leerRegistro(i);
         if(moneda.getEstado()){
@@ -388,6 +465,12 @@ void cambiarCotizacion(){
     float compra,venta;
     bool encontro=false;
     pos=archMonedas.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return;
+    }
+
     cout<<"----------------------------------"<<endl;
     cout<<"-         CAMBIAR COTIZACION     -"<<endl;
     cout<<"----------------------------------"<<endl;
@@ -420,6 +503,12 @@ bool eliminarMoneda(){
     char opc[5],monedaBuscada[20];
     bool bajo=false,encontro=false;
     pos=archMonedas.contarRegistros();
+
+    if(pos == 0) {
+        cout<< "NO HAY REGISTROS" <<endl;
+        return 0;
+    }
+
     cout<<"INGRESAR EL NOMBRE DE LA DIVISA"<<endl;
     cargarCadena(monedaBuscada,20);
     for(int i=0;i<pos;i++){
@@ -450,7 +539,7 @@ bool eliminarMoneda(){
 ///MENU CONFIG
 bool bajaFisicaArchClientes(){
     FILE* file, * fileBak;
-    Moneda reg;
+    Cliente reg;
 
     file = fopen("clientes.dat", "rb");
     if (file == NULL)return false;
@@ -474,7 +563,7 @@ bool bajaFisicaArchClientes(){
 
 bool bajaFisicaArchEmpleados(){
     FILE* file, * fileBak;
-    Moneda reg;
+    Empleado reg;
 
     file = fopen("empleados.dat", "rb");
     if (file == NULL)return false;
@@ -498,12 +587,12 @@ bool bajaFisicaArchEmpleados(){
 
 bool bajaFisicaArchTransacciones(){
     FILE* file, * fileBak;
-    Moneda reg;
+    Transaccion reg;
 
-    file = fopen(".dat", "rb");
+    file = fopen("transacciones.dat", "rb");
     if (file == NULL)return false;
 
-    fileBak = fopen(".bak", "wb");
+    fileBak = fopen("transacciones.bak", "wb");
     if (fileBak == NULL) {
         cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
         fclose(file);
@@ -538,6 +627,94 @@ bool bajaFisicaArchMonedas(){
         if (reg.getEstado() == true) {
             fwrite(&reg, sizeof reg, 1, fileBak);
         }
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool RestaurarArchClientes(){
+    FILE* file, * fileBak;
+    Cliente reg;
+
+    file = fopen("clientes.dat", "wb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("clientes.bak", "rb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, fileBak) == 1) {
+            fwrite(&reg, sizeof reg, 1, file);
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool RestaurarArchEmpleados(){
+    FILE* file, * fileBak;
+    Empleado reg;
+
+    file = fopen("empleados.dat", "wb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("empleados.bak", "rb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, fileBak) == 1) {
+            fwrite(&reg, sizeof reg, 1, file);
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool RestaurarArchTransacciones(){
+    FILE* file, * fileBak;
+    Transaccion reg;
+
+    file = fopen("transacciones.dat", "wb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("transacciones.bak", "rb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, fileBak) == 1) {
+            fwrite(&reg, sizeof reg, 1, file);
+    }
+    fclose(file);
+    fclose(fileBak);
+    return true;
+}
+
+bool RestaurarArchMonedas(){
+    FILE* file, * fileBak;
+    Moneda reg;
+
+    file = fopen("monedas.dat", "wb");
+    if (file == NULL)return false;
+
+    fileBak = fopen("monedas.bak", "rb");
+    if (fileBak == NULL) {
+        cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
+        fclose(file);
+        return false;
+    }
+
+    while (fread(&reg, sizeof reg, 1, fileBak) == 1) {
+            fwrite(&reg, sizeof reg, 1, file);
     }
     fclose(file);
     fclose(fileBak);

@@ -47,4 +47,9 @@ bool bajaFisicaArchEmpleados();
 bool bajaFisicaArchTransacciones();
 bool bajaFisicaArchMonedas();
 
+bool RestaurarArchClientes();
+bool RestaurarArchEmpleados();
+bool RestaurarArchTransacciones();
+bool RestaurarArchMonedas();
+
 #endif // PROTOTYPES_H_INCLUDED

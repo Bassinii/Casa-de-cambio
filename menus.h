@@ -667,7 +667,7 @@ int menuCopiaSeguridad(){
         locate (x, y+3);
         cout<<"-    COPIA DE SEGURIDAD ARCHIVO CLIENTE          -";
         locate (x, y+4);
-        cout<<"-    (LEER) COPIA DE SEGURIDAD ARCHIVO EMPLEADOS        -";
+        cout<<"-    COPIA DE SEGURIDAD ARCHIVO EMPLEADOS        -";
         locate (x, y+5);
         cout<<"-    COPIA DE SEGURIDAD ARCHIVO TRANSACCIONES    -";
         locate (x, y+6);
@@ -717,29 +717,20 @@ int menuCopiaSeguridad(){
 
                     if(SposicionY == 1){
                         cls();
-
-Cliente reg;
-FILE* file = fopen("clientes.bak", "rb");
-
-if (file == NULL) {
-	cout << "ERROR DE ARCHIVO";
-	return false;
-}
-
-while (fread(&reg, sizeof(Cliente), 1, file) == 1) {
-	reg.mostrar();
-	cout << endl;
-}
-fclose(file);
-
-
+                        if (!bajaFisicaArchEmpleados()) cout << "COPIA DE SEGURIDAD NO EFECTIVA" << endl;
+                        else {
+                                cout << "COPIA DE SEGURIDAD EFECTIVA" << endl;
+                        }
                         system("pause");
                         cls();
                     }
 
                     if(SposicionY == 2){
                         cls();
-
+                        if (!bajaFisicaArchTransacciones()) cout << "COPIA DE SEGURIDAD NO EFECTIVA" << endl;
+                        else {
+                                cout << "COPIA DE SEGURIDAD EFECTIVA" << endl;
+                        }
                         system("pause");
                         cls();
                     }
@@ -825,7 +816,7 @@ int menuRestaurar(){
             case 1:
                     if(SposicionY == 0){
                         cls();
-                        if (SposicionY == 0) cout << "RESTAURACION NO EFECTIVA" << endl;
+                        if (!RestaurarArchClientes()) cout << "RESTAURACION NO EFECTIVA" << endl;
                         else {
                                 cout << "RESTAURACION EFECTIVA" << endl;
                         }
@@ -835,21 +826,30 @@ int menuRestaurar(){
 
                     if(SposicionY == 1){
                         cls();
-
+                        if (!RestaurarArchEmpleados()) cout << "RESTAURACION NO EFECTIVA" << endl;
+                        else {
+                                cout << "RESTAURACION EFECTIVA" << endl;
+                        }
                         system("pause");
                         cls();
                     }
 
                     if(SposicionY == 2){
                         cls();
-
+                        if (!RestaurarArchTransacciones()) cout << "RESTAURACION NO EFECTIVA" << endl;
+                        else {
+                                cout << "RESTAURACION EFECTIVA" << endl;
+                        }
                         system("pause");
                         cls();
                     }
 
                     if(SposicionY == 3){
                         cls();
-
+                        if (!RestaurarArchMonedas()) cout << "RESTAURACION NO EFECTIVA" << endl;
+                        else {
+                                cout << "RESTAURACION EFECTIVA" << endl;
+                        }
                         system("pause");
                         cls();
                     }
