@@ -177,7 +177,8 @@ class Transaccion{
 private:
     int ID,dniCliente,dniEmpleado;
     float importe;
-    char nombreCliente[30],nombreEmpleado[30];
+    char nombreCliente[30],nombreEmpleado[30],divisa[20];
+    bool estado,tipo;//0 es compra 1 es venta
     Fecha fecha;
 public:
     ///GETTERS
@@ -187,6 +188,8 @@ public:
     const float getImporte(){return importe;}
     const char* getNombreCliente(){return nombreCliente;}
     const char* getNombreEmpleado(){return nombreEmpleado;}
+    const bool getEstado(){return estado;}
+    const bool getTipo(){return tipo;}
     const Fecha& getFecha(){return fecha;}
     ///SETTERS
     void setID(int ID){this->ID=ID;}
@@ -195,13 +198,15 @@ public:
     void setImporte(float importe){this->importe=importe;}
     void setNombreCliente(char* nombreCliente){strcpy(this->nombreCliente,nombreCliente);}
     void setNombreEmpleado(char* nombreEmpleado){strcpy(this->nombreEmpleado,nombreEmpleado);}
+    void setEstado(bool estado){this->estado=estado;}
+    void setTipo(bool tipo){this->tipo=tipo;}
     void setFecha(int dia,int mes,int anio){
         fecha.setDia(dia);
         fecha.setMes(mes);
         fecha.setAnio(anio);
     }
     ///METODOS
-    void cargar();
+    bool cargar();
     void mostrar();
     void mostrarFecha(){fecha.MostrarFecha();}
 };
@@ -445,7 +450,7 @@ bool ArchivoTransacciones::modificarRegistro(int pos, Transaccion& transaccion){
     return modifico;
 }
 
-void Transaccion::cargar(){
+bool Transaccion::cargar(){
     ArchivoTransacciones archTransacciones("transacciones.dat");
     ArchivoMonedas archMonedas("monedas.dat");
     ArchivoClientes archClientes("clientes.dat");
@@ -454,80 +459,72 @@ void Transaccion::cargar(){
     Transaccion transaccion;
     Cliente cliente;
     Empleado empleado;
-    int posMonedas,posClientes,posEmpleados,dniCliente,dniEmpleado,dia,mes,anio;
-    float monto;
-    char tipo[8],divisa[20],opc[4];
-    bool ingreso=true, encontroMoneda=false, encontroCliente=false,encontroEmpleado=false,pedir=true;
-    posMonedas=archMonedas.contarRegistros();
-    posClientes=archClientes.contarRegistros();
-    posEmpleados=archEmpleados.contarRegistros();
-    this->ID=archTransacciones.contarRegistros();
-    while(ingreso){
-        cout<<"INGRESE EL TIPO DE TRANSACCION (compra/venta)"<<endl;
-        cargarCadena(tipo,8);
-        if(strcmp(tipo,"compra")==0){
-            cout<<"INGRESE LA DIVISA QUE SE COMPRO"<<endl;
-            cargarCadena(divisa,20);
-            for(int i=0;i<posMonedas;i++){
-                moneda=archMonedas.leerRegistro(i);
-                if(strcmp(divisa,moneda.getDivisa())==0){
-                    cout<<"INGRESE EL MONTO"<<endl;
-                    cin>>monto;
-                    transaccion.setImporte(monto*moneda.getVenta());
-                    encontroMoneda=true;
-                    while(!encontroCliente){
-                        cout<<"INGRESE EL DNI DE EL CLIENTE"<<endl;
-                        cin>>dniCliente;
-                        for(int j=0;j<posClientes;j++){
-                            cliente=archClientes.leerRegistro(j);
-                            if(cliente.getDni()==dniCliente){
-                                encontroCliente=true;
-                                cout<<"INGRESE EL DNI DE EL EMPLEADO"<<endl;
-                                cin>>dniEmpleado;
-                                for(int k=0;k<posEmpleados;k++){
-                                    empleado=archEmpleados.leerRegistro(k);
-                                    if(empleado.getDni()==dniEmpleado){
-                                        encontroEmpleado=true;
-                                        while(pedir){
-                                            cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(si/no)"<<endl;
-                                            cargarCadena(opc,4);
-                                            if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"No")==0||strcmp(opc,"nO")==0){
-                                                cout<<"INGRESAR EL DIA"<<endl;
-                                                cin>>dia;
-                                                cout<<"INGRESAR EL MES"<<endl;
-                                                cin>>mes;
-                                                cout<<"INGRESAR EL ANIO"<<endl;
-                                                cin>>anio;
-                                                transaccion.setFecha(dia,mes,anio);
-                                                pedir=false;
-                                            }else if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"Si")==0||strcmp(opc,"sI")==0){
-                                                cout<<"FECHA ASIGNADA: "<<endl;
-                                                transaccion.mostrarFecha();
-                                                pedir=false;
-                                            }else{
-                                                cout<<"OPCION INVALIDA"<<endl;
-                                            }
-                                        }
-                                    }
-                                }
-                                if(!encontroEmpleado){
-                                    cout<<"NO SE ENCONTRO EL EMPLEADO"<<endl;
-                                }
-                                break;
-                            }
-                            if(!encontroCliente){
-                                cout<<"NO SE ENCONTRO EL CLIENTE"<<endl;
-                            }
-                        }
-                    }
-                    break;
-
-                }
-            }
-            if(!encontroMoneda){
-                cout<<"NO SE ENCONTRO LA MONEDA"<<endl;
-            }
+    int dia,mes,anio,posMoneda;
+    char Ctipo[8],Cdivisa[20],opc[4];
+    bool pedir=true,cargo;
+    estado=true;
+    cout<<"INGRESAR TIPO DE TRANSACCION(compra/venta)"<<endl;
+    cargarCadena(Ctipo,8);
+    if(strcmp(Ctipo,"compra")==0){
+        this->tipo=false;
+    }else if(strcmp(Ctipo,"venta")==0){
+        this->tipo=true;
+    }else{
+        cout<<"TIPO DE TRANSACCION INCORRECTO"<<endl;
+        return 0;
+    }
+    cout<<"INGRESAR TIPO DE DIVISA"<<endl;
+    cargarCadena(Cdivisa,20);
+    strcpy(this->divisa,Cdivisa);
+    cout<<"INGRESAR CANTIDAD A COMPRAR"<<endl;
+    cin>>importe;
+    cout<<"INGRESAR DNI DE EL CLIENTE"<<endl;
+    cin>>dniCliente;
+    cout<<"INGRESAR DNI DE EL EMPLEADO"<<endl;
+    cin>>dniEmpleado;
+    while(pedir){
+        cout<<"LA FECHA DE LA TRANSACCION ES LA ACTUAL?(si/no)"<<endl;
+        cargarCadena(opc,4);
+        if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"No")==0||strcmp(opc,"nO")==0){
+            cout<<"INGRESAR EL DIA"<<endl;
+            cin>>dia;
+            cout<<"INGRESAR EL MES"<<endl;
+            cin>>mes;
+            cout<<"INGRESAR EL ANIO"<<endl;
+            cin>>anio;
+            fecha.setDia(dia);
+            fecha.setMes(mes);
+            fecha.setAnio(anio);
+            pedir=false;
+        }else if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"Si")==0||strcmp(opc,"sI")==0){
+            cout<<"FECHA ASIGNADA: "<<endl;
+            fecha.MostrarFecha();
+            pedir=false;
+        }else{
+            cout<<"OPCION INVALIDA"<<endl;
         }
+    }
+    cout<<"INGRESAR ID DE LA TRANSACCION"<<endl;
+    cin>>ID;
+    return true;
+}
+
+void Transaccion::mostrar(){
+    if(estado){
+        cout<<"ID DE LA TRANSACCION: "<<ID<<endl;
+        cout<<"TIPO DE TRANSACCION: ";
+        if(tipo){
+            cout<<"VENTA"<<endl;
+        }else{
+            cout<<"COMPRA"<<endl;
+        }
+        cout<<"DIVISA: "<<divisa<<endl;
+        cout<<"IMPORTE DE LA TRANSACCION: "<<importe<<endl;
+        cout<<"DNI DE EL CLIENTE: "<<dniCliente<<endl;
+        cout<<"DNI DE EL EMPLEADO: "<<dniEmpleado<<endl;
+        cout<<"FECHA DE LA TRANSACCION: ";
+        fecha.MostrarFecha();
+        cout<<endl;
     }
 }
 

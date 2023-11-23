@@ -266,18 +266,84 @@ void buscarDniEmpleado(){
 
 ///MENU TRANSACCIONES
 bool crearTransaccion(){
-
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion;
+    bool escribio=false,cargo;
+    cout<<"----------------------------------"<<endl;
+    cout<<"-         AGREGAR TRANSACCION    -"<<endl;
+    cout<<"----------------------------------"<<endl;
+    cargo=transaccion.cargar();
+    if(cargo){
+        escribio=archTransacciones.agregarRegistro(transaccion);
+    }
+    return escribio;
 }
 
 void mostrarTransaccionPorID(){
-
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion;
+    int tam,id;
+    bool noMostro=true;
+    tam=archTransacciones.contarRegistros();
+    cout<<"INGRESAR EL ID DE LA TRANSACCION"<<endl;
+    cin>>id;
+    for(int i=0;i<tam;i++){
+        transaccion=archTransacciones.leerRegistro(i);
+        if(transaccion.getID()==id&&transaccion.getEstado()){
+            transaccion.mostrar();
+            cout<<endl;
+            noMostro=false;
+        }
+    }
+    if(noMostro){
+        cout<<"NO SE ENCONTRO LA TRANSACCION"<<endl;
+    }
 }
-void mostrarTodasLasTransacciones(){
 
+void mostrarTodasLasTransacciones(){
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion;
+    int pos;
+    pos=archTransacciones.contarRegistros();
+    for(int i=0;i<pos;i++){
+        transaccion=archTransacciones.leerRegistro(i);
+        transaccion.mostrar();
+        cout<<endl;
+    }
 }
 
 bool eliminarTransaccion(){
-
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion;
+    int id,pos,posReg;
+    char opc[5];
+    bool bajo=false,encontro=false;
+    pos=archTransacciones.contarRegistros();
+    cout<<"INGRESAR EL ID DE LA TRANSACCION"<<endl;
+    cin>>id;
+    for(int i=0;i<pos;i++){
+        transaccion=archTransacciones.leerRegistro(i);
+        if(transaccion.getID()==id){
+            encontro=true;
+            posReg=i;
+            break;
+        }
+    }
+    if(!encontro) cout<<"NO SE ENCONTRO TRANSACCION CON ESE ID"<<endl;
+    if(encontro){
+        transaccion.mostrar();
+        cout<<"BORRAR TRANSACCION? (si/no)"<<endl;
+        cargarCadena(opc,5);
+        if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"sI")==0||strcmp(opc,"Si")==0){
+            transaccion.setEstado(false);
+            bajo=archTransacciones.modificarRegistro(posReg,transaccion);
+        }else if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"nO")==0||strcmp(opc,"No")==0){
+            cout<<"NO SE HIZO LA BAJA"<<endl;
+        }else{
+            cout<<"OPCION INCORRECTA"<<endl;
+        }
+    }
+    return bajo;
 }
 
 void buscarTransaccion(){
