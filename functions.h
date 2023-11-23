@@ -476,7 +476,24 @@ bool eliminarTransaccion(){
 }
 
 void buscarTransaccion(){
-
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    Transaccion transaccion;
+    int pos,id;
+    bool encontro=false;
+    pos=archTransacciones.contarRegistros();
+    cout<<"INGRESAR EL ID DE LA TRANSACCION A BUSCAR"<<endl;
+    cin>>id;
+    for(int i=0;i<pos;i++){
+        transaccion=archTransacciones.leerRegistro(i);
+        if(transaccion.getID()==id){
+            encontro=true;
+            transaccion.mostrar();
+            cout<<endl;
+        }
+    }
+    if(!encontro){
+        cout<<"NO SE ENCONTRO ID"<<endl;
+    }
 }
 
 ///MENU MONEDAS
