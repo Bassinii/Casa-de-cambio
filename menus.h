@@ -366,6 +366,7 @@ int menuEmpleados(){
 }
 
 int menuTransacciones(){
+
     return 0;
 }
 

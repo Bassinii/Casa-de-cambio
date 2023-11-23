@@ -192,7 +192,18 @@ public:
     void setID(int ID){this->ID=ID;}
     void setDniCliente(int dniCliente){this->dniCliente=dniCliente;}
     void setDniEmpleado(int dniEmpleado){this->dniEmpleado=dniEmpleado;}
-
+    void setImporte(float importe){this->importe=importe;}
+    void setNombreCliente(char* nombreCliente){strcpy(this->nombreCliente,nombreCliente);}
+    void setNombreEmpleado(char* nombreEmpleado){strcpy(this->nombreEmpleado,nombreEmpleado);}
+    void setFecha(int dia,int mes,int anio){
+        fecha.setDia(dia);
+        fecha.setMes(mes);
+        fecha.setAnio(anio);
+    }
+    ///METODOS
+    void cargar();
+    void mostrar();
+    void mostrarFecha(){fecha.MostrarFecha();}
 };
 
 class ArchivoClientes{
@@ -243,8 +254,6 @@ int ArchivoClientes::contarRegistros(){
     return kb/sizeof(Cliente);
 }
 
-//Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
-//y lo escribe
 bool ArchivoClientes::modificarRegistro(int pos, Cliente& cliente){
     FILE *f;
     bool modifico;
@@ -304,8 +313,6 @@ int ArchivoEmpleados::contarRegistros(){
     return kb/sizeof(Empleado);
 }
 
-//Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
-//y lo escribe
 bool ArchivoEmpleados::modificarRegistro(int pos, Empleado& empleado){
     FILE *f;
     bool modifico;
@@ -365,8 +372,6 @@ int ArchivoMonedas::contarRegistros(){
     return kb/sizeof(Moneda);
 }
 
-//Recibe la posicion donde está el registro a bajar, el registro y establece su estado en false
-//y lo escribe
 bool ArchivoMonedas::modificarRegistro(int pos, Moneda& moneda){
     FILE *f;
     bool modifico;
@@ -376,6 +381,151 @@ bool ArchivoMonedas::modificarRegistro(int pos, Moneda& moneda){
     modifico=fwrite(&moneda,sizeof(Moneda),1,f);
     fclose(f);
     return modifico;
+}
+
+class ArchivoTransacciones{
+private:
+    char nombre[30];
+public:
+    ArchivoTransacciones(const char *nombre){
+        strcpy(this->nombre,nombre);
+        }
+    bool agregarRegistro(Transaccion);
+    Transaccion leerRegistro(int);
+    int contarRegistros();
+    bool modificarRegistro(int,Transaccion&);
+};
+
+bool ArchivoTransacciones::agregarRegistro(Transaccion transaccion){
+    bool escribio;
+    FILE *f;
+    f=fopen(nombre,"ab");
+    if(f==NULL){
+        cout<<"ERROR AL ABRIR EL REGISTRO :("<<endl;
+        return false;
+    }
+    escribio=fwrite(&transaccion,sizeof (Transaccion),1,f);
+    fclose(f);
+    return escribio;
+}
+
+Transaccion ArchivoTransacciones::leerRegistro(int pos){
+    FILE *f;
+    Transaccion transaccion;
+    f=fopen(nombre,"rb");
+    if(f==NULL) cout<<"ERROR AL ABRIR EL REGISTRO"<<endl;
+    fseek(f,sizeof transaccion*pos,SEEK_SET);
+    fread(&transaccion,sizeof transaccion,1,f);
+    fclose(f);
+    return transaccion;
+}
+
+int ArchivoTransacciones::contarRegistros(){
+    int kb;
+    FILE *f;
+    f=fopen(nombre,"rb");
+    if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+    fseek(f,0,SEEK_END);
+    kb=ftell(f);
+    fclose(f);
+    return kb/sizeof(Transaccion);
+}
+
+bool ArchivoTransacciones::modificarRegistro(int pos, Transaccion& transaccion){
+    FILE *f;
+    bool modifico;
+    f=fopen(nombre,"rb+");
+    if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+    fseek(f,sizeof(Transaccion)*pos,SEEK_SET);
+    modifico=fwrite(&transaccion,sizeof(Transaccion),1,f);
+    fclose(f);
+    return modifico;
+}
+
+void Transaccion::cargar(){
+    ArchivoTransacciones archTransacciones("transacciones.dat");
+    ArchivoMonedas archMonedas("monedas.dat");
+    ArchivoClientes archClientes("clientes.dat");
+    ArchivoEmpleados archEmpleados("empleados.dat");
+    Moneda moneda;
+    Transaccion transaccion;
+    Cliente cliente;
+    Empleado empleado;
+    int posMonedas,posClientes,posEmpleados,dniCliente,dniEmpleado,dia,mes,anio;
+    float monto;
+    char tipo[8],divisa[20],opc[4];
+    bool ingreso=true, encontroMoneda=false, encontroCliente=false,encontroEmpleado=false,pedir=true;
+    posMonedas=archMonedas.contarRegistros();
+    posClientes=archClientes.contarRegistros();
+    posEmpleados=archEmpleados.contarRegistros();
+    this->ID=archTransacciones.contarRegistros();
+    while(ingreso){
+        cout<<"INGRESE EL TIPO DE TRANSACCION (compra/venta)"<<endl;
+        cargarCadena(tipo,8);
+        if(strcmp(tipo,"compra")==0){
+            cout<<"INGRESE LA DIVISA QUE SE COMPRO"<<endl;
+            cargarCadena(divisa,20);
+            for(int i=0;i<posMonedas;i++){
+                moneda=archMonedas.leerRegistro(i);
+                if(strcmp(divisa,moneda.getDivisa())==0){
+                    cout<<"INGRESE EL MONTO"<<endl;
+                    cin>>monto;
+                    transaccion.setImporte(monto*moneda.getVenta());
+                    encontroMoneda=true;
+                    while(!encontroCliente){
+                        cout<<"INGRESE EL DNI DE EL CLIENTE"<<endl;
+                        cin>>dniCliente;
+                        for(int j=0;j<posClientes;j++){
+                            cliente=archClientes.leerRegistro(j);
+                            if(cliente.getDni()==dniCliente){
+                                encontroCliente=true;
+                                cout<<"INGRESE EL DNI DE EL EMPLEADO"<<endl;
+                                cin>>dniEmpleado;
+                                for(int k=0;k<posEmpleados;k++){
+                                    empleado=archEmpleados.leerRegistro(k);
+                                    if(empleado.getDni()==dniEmpleado){
+                                        encontroEmpleado=true;
+                                        while(pedir){
+                                            cout<<"LA FECHA DE INSCRIPCION ES LA ACTUAL?(si/no)"<<endl;
+                                            cargarCadena(opc,4);
+                                            if(strcmp(opc,"NO")==0||strcmp(opc,"no")==0||strcmp(opc,"No")==0||strcmp(opc,"nO")==0){
+                                                cout<<"INGRESAR EL DIA"<<endl;
+                                                cin>>dia;
+                                                cout<<"INGRESAR EL MES"<<endl;
+                                                cin>>mes;
+                                                cout<<"INGRESAR EL ANIO"<<endl;
+                                                cin>>anio;
+                                                transaccion.setFecha(dia,mes,anio);
+                                                pedir=false;
+                                            }else if(strcmp(opc,"SI")==0||strcmp(opc,"si")==0||strcmp(opc,"Si")==0||strcmp(opc,"sI")==0){
+                                                cout<<"FECHA ASIGNADA: "<<endl;
+                                                transaccion.mostrarFecha();
+                                                pedir=false;
+                                            }else{
+                                                cout<<"OPCION INVALIDA"<<endl;
+                                            }
+                                        }
+                                    }
+                                }
+                                if(!encontroEmpleado){
+                                    cout<<"NO SE ENCONTRO EL EMPLEADO"<<endl;
+                                }
+                                break;
+                            }
+                            if(!encontroCliente){
+                                cout<<"NO SE ENCONTRO EL CLIENTE"<<endl;
+                            }
+                        }
+                    }
+                    break;
+
+                }
+            }
+            if(!encontroMoneda){
+                cout<<"NO SE ENCONTRO LA MONEDA"<<endl;
+            }
+        }
+    }
 }
 
 #endif // CLASSES_H_INCLUDED

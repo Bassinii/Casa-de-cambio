@@ -258,6 +258,26 @@ void buscarDniEmpleado(){
     }
 }
 
+///MENU TRANSACCIONES
+bool crearTransaccion(){
+
+}
+
+void mostrarTransaccionPorID(){
+
+}
+void mostrarTodasLasTransacciones(){
+
+}
+
+bool eliminarTransaccion(){
+
+}
+
+void buscarTransaccion(){
+
+}
+
 ///MENU MONEDAS
 //Agrega una moneda, si se pudo agregar retorna true, sino false
 bool agregarMoneda(){
