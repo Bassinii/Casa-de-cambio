@@ -144,7 +144,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1700687373 source:c:\users\marco\onedrive\escritorio\casa-de-cambio-main\main.cpp
+1700716152 source:c:\users\marco\onedrive\escritorio\casa-de-cambio-main\main.cpp
 	<iostream>
 	<cstring>
 	<ctime>
@@ -155,7 +155,7 @@
 	"menus.h"
 	"functions.h"
 
-1700687109 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\rlutil.h
+1700716152 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -169,13 +169,13 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1700688141 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\prototypes.h
+1700716152 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\prototypes.h
 
-1700687108 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\cfecha.h
+1700716151 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\cfecha.h
 
-1700687109 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\classes.h
+1700716151 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\classes.h
 
-1700688000 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\menus.h
+1700716828 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\menus.h
 
-1700688073 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\functions.h
+1700716152 c:\users\marco\onedrive\escritorio\casa-de-cambio-main\functions.h
 

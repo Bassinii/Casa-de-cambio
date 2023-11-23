@@ -365,9 +365,114 @@ int menuEmpleados(){
     }
 }
 
-int menuTransacciones(){
 
-    return 0;
+
+
+
+
+
+int menuTransacciones(){
+int SposicionY= 0;
+
+    while(true){
+        int opc;
+        const int x = 40;
+        int y = 10;
+
+        locate (x, 10);
+        cout<<"--------------------------------------";
+        locate (x, y+1);
+        cout<<"-         MENU TRANSACCIONES         -";
+        locate (x, y+2);
+        cout<<"--------------------------------------";
+        locate (x, y+3);
+        cout<<"-    CARGAR TRANSACCION              -";
+        locate (x, y+4);
+        cout<<"-    MOSTRAR TRANSACCIONES POR ID    -";
+        locate (x, y+5);
+        cout<<"-    MOSTRAR TODAS LAS TRANSACCIONES -";
+        locate (x, y+6);
+        cout<<"-    ELIMINAR TRANSACION             -";
+        locate (x, y+7);
+        cout<<"-    SALIR                           -";
+        locate (x, y+8);
+        cout<<"--------------------------------------";
+
+        locate(43, 13 + SposicionY);
+        cout << (char)175 << endl;
+
+        int key = rlutil::getkey();
+
+        switch (key) {
+            /// Tecla UP
+            case 14:
+                locate(43, 13 + SposicionY);
+                cout << " " << endl;
+
+                if (SposicionY > 0) {
+                    SposicionY--;
+                }
+
+                break;
+            /// Tecla DOWN
+            case 15:
+                locate(43, 13 + SposicionY);
+                cout << " " << endl;
+
+                if (SposicionY < 5) {
+                    SposicionY++;
+                }
+
+                break;
+            /// Tecla ENTER
+            case 1:
+                    if(SposicionY == 0){
+                        cls();
+                        if(crearTransaccion()) cout<<"SE AÑADIO LA TRANSACCION CORRECTAMENTE"<<endl;
+                        else cout<<"NO SE PUDO AGREGAR LA TRANSACCION"<<endl;
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 1){
+                        cls();
+                        mostrarTransaccionPorID();
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 2){
+                        cls();
+                        mostrarTodasLasTransacciones();
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 3){
+                        cls();
+                        if(eliminarTransaccion()) cout<<"SE ELIMINO LA TRANSACCION CORRECTAMENTE"<<endl;
+                        else cout<<"NO SE HIZO LA BAJA DE LA TRANSACCION"<<endl;
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 4){
+                        buscarTransaccion();
+                        return 0;
+                    }
+
+                    if(SposicionY == 4){
+                        cls();
+                        return 0;
+                    }
+
+                break;
+
+            default:
+                cout<<"OPCION INCORRECTA"<<endl;
+                break;
+        }
+    }
 }
 
 int menuMonedas(){
