@@ -306,7 +306,10 @@ int ArchivoEmpleados::contarRegistros(){
     int kb;
     FILE *f;
     f=fopen(nombre,"rb");
-    if(f==NULL) cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+    if(f==NULL) {
+        cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+        return 0;
+    }
     fseek(f,0,SEEK_END);
     kb=ftell(f);
     fclose(f);

@@ -179,6 +179,12 @@ void mostrarTodosLosEmpleados(){
     Empleado empleado;
     int tam;
     tam=archEmpleados.contarRegistros();
+
+    if(tam == 0) {
+        cout<< "NO HAY REGISTROS";
+        return;
+    }
+    system("pause");
     for(int i=0;i<tam;i++){
         empleado=archEmpleados.leerRegistro(i);
         if(empleado.getEstado()){
@@ -404,10 +410,10 @@ bool bajaFisicaArchEmpleados(){
     FILE* file, * fileBak;
     Moneda reg;
 
-    file = fopen(".dat", "rb");
+    file = fopen("empleados.dat", "rb");
     if (file == NULL)return false;
 
-    fileBak = fopen(".bak", "wb");
+    fileBak = fopen("empleados.bak", "wb");
     if (fileBak == NULL) {
         cout << "NO SE PUDO CREAR EL ARCHIVO" << endl;
         fclose(file);

@@ -365,12 +365,6 @@ int menuEmpleados(){
     }
 }
 
-
-
-
-
-
-
 int menuTransacciones(){
 int SposicionY= 0;
 
@@ -392,10 +386,12 @@ int SposicionY= 0;
         locate (x, y+5);
         cout<<"-    MOSTRAR TODAS LAS TRANSACCIONES -";
         locate (x, y+6);
-        cout<<"-    ELIMINAR TRANSACION             -";
+        cout<<"-    BUSCAR TRANSACION               -";
         locate (x, y+7);
-        cout<<"-    SALIR                           -";
+        cout<<"-    ELIMINAR TRANSACION             -";
         locate (x, y+8);
+        cout<<"-    SALIR                           -";
+        locate (x, y+9);
         cout<<"--------------------------------------";
 
         locate(43, 13 + SposicionY);
@@ -450,18 +446,20 @@ int SposicionY= 0;
 
                     if(SposicionY == 3){
                         cls();
+                        buscarTransaccion();
+                        system("pause");
+                        cls();
+                    }
+
+                    if(SposicionY == 4){
+                        cls();
                         if(eliminarTransaccion()) cout<<"SE ELIMINO LA TRANSACCION CORRECTAMENTE"<<endl;
                         else cout<<"NO SE HIZO LA BAJA DE LA TRANSACCION"<<endl;
                         system("pause");
                         cls();
                     }
 
-                    if(SposicionY == 4){
-                        buscarTransaccion();
-                        return 0;
-                    }
-
-                    if(SposicionY == 4){
+                    if(SposicionY == 5){
                         cls();
                         return 0;
                     }
@@ -480,7 +478,7 @@ int menuMonedas(){
 
     while(true){
         int opc;
-        const int x = 40;
+        const int x = 47;
         int y = 10;
 
         locate (x, 10);
@@ -721,7 +719,7 @@ int menuCopiaSeguridad(){
                         cls();
 
 Cliente reg;
-FILE* file = fopen("Clientes.bak", "rb");
+FILE* file = fopen("clientes.bak", "rb");
 
 if (file == NULL) {
 	cout << "ERROR DE ARCHIVO";
