@@ -495,7 +495,7 @@ bool Transaccion::cargar(){
     cargarCadena(Cdivisa,20);
     for(int a=0;a<posMoneda;a++){
         moneda=archMonedas.leerRegistro(a);
-        if(strcmp(moneda.getDivisa(),Cdivisa)==0){
+        if(strcmp(moneda.getDivisa(),Cdivisa)==0&&moneda.getEstado()){
             precioCompra=moneda.getCompra();
             precioVenta=moneda.getVenta();
             strcpy(this->divisa,moneda.getDivisa());
@@ -521,7 +521,7 @@ bool Transaccion::cargar(){
     cin>>dniClienteBus;
     for(int b=0;b<posCliente;b++){
         cliente=archClientes.leerRegistro(b);
-        if(cliente.getDni()==dniClienteBus){
+        if(cliente.getDni()==dniClienteBus&&cliente.getEstado()){
             this->dniCliente=dniClienteBus;
             encontroCliente=true;
         }
@@ -532,7 +532,19 @@ bool Transaccion::cargar(){
     }
 
     cout<<"INGRESAR DNI DE EL EMPLEADO"<<endl;
-    cin>>dniEmpleado;
+    cin>>dniEmpleadoBus;
+    for(int c=0;c<posEmpleado;c++){
+        empleado=archEmpleados.leerRegistro(c);
+        if(empleado.getDni()==dniEmpleadoBus&&empleado.getEstado()){
+            this->dniEmpleado=dniEmpleadoBus;
+            encontroEmpleado=true;
+        }
+    }
+
+    if(!encontroEmpleado){
+        cout<<"NO SE ENOCONTRO EL EMPLEADO, INTENTE NUEVAMENTE"<<endl;
+        return false;
+    }
 
     while(pedir){
         cout<<"LA FECHA DE LA TRANSACCION ES LA ACTUAL?(si/no)"<<endl;
@@ -561,7 +573,7 @@ bool Transaccion::cargar(){
 }
 
 void Transaccion::mostrar(){
-    if(estado){
+    if(this->estado){
         cout<<"ID DE LA TRANSACCION: "<<ID<<endl;
         cout<<"TIPO DE TRANSACCION: ";
         if(tipo){

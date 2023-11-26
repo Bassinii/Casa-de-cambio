@@ -459,6 +459,7 @@ bool eliminarTransaccion(){
         }
     }
     if(!encontro) cout<<"NO SE ENCONTRO TRANSACCION CON ESE ID"<<endl;
+
     if(encontro){
         transaccion.mostrar();
         cout<<"BORRAR TRANSACCION? (si/no)"<<endl;
