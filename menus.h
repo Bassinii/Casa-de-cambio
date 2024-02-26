@@ -391,7 +391,7 @@ int SposicionY= 0;
         locate (x, y+5);
         cout<<"-    MOSTRAR TODAS LAS TRANSACCIONES -";
         locate (x, y+6);
-        cout<<"-    BUSCAR TRANSACION               -";
+        cout<<"-                  -";
         locate (x, y+7);
         cout<<"-    ELIMINAR TRANSACION             -";
         locate (x, y+8);
@@ -451,7 +451,7 @@ int SposicionY= 0;
 
                     if(SposicionY == 3){
                         cls();
-                        buscarTransaccion();
+
                         system("pause");
                         cls();
                     }

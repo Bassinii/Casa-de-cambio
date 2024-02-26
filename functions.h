@@ -105,11 +105,13 @@ bool eliminarCliente(){
     cin>>dni;
     for(int i=0;i<pos;i++){
         cliente=archCli.leerRegistro(i);
-        if(cliente.getDni()==dni){
+        if(cliente.getDni()==dni&&cliente.getEstado()){
             encontro=true;
             posReg=i;
             break;
+            break;
         }
+
     }
     if(!encontro) cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;
     if(encontro){
@@ -404,6 +406,7 @@ void mostrarTransaccionPorID(){
 
     cout<<"INGRESAR EL ID DE LA TRANSACCION"<<endl;
     cin>>id;
+    system("cls");
     for(int i=0;i<tam;i++){
         transaccion=archTransacciones.leerRegistro(i);
         if(transaccion.getID()==id&&transaccion.getEstado()){
@@ -422,6 +425,7 @@ void mostrarTodasLasTransacciones(){
     Transaccion transaccion;
     int pos;
     pos=archTransacciones.contarRegistros();
+
 
     if(pos == 0) {
         cout<< "NO HAY REGISTROS" <<endl;
@@ -476,26 +480,6 @@ bool eliminarTransaccion(){
     return bajo;
 }
 
-void buscarTransaccion(){
-    ArchivoTransacciones archTransacciones("transacciones.dat");
-    Transaccion transaccion;
-    int pos,id;
-    bool encontro=false;
-    pos=archTransacciones.contarRegistros();
-    cout<<"INGRESAR EL ID DE LA TRANSACCION A BUSCAR"<<endl;
-    cin>>id;
-    for(int i=0;i<pos;i++){
-        transaccion=archTransacciones.leerRegistro(i);
-        if(transaccion.getID()==id){
-            encontro=true;
-            transaccion.mostrar();
-            cout<<endl;
-        }
-    }
-    if(!encontro){
-        cout<<"NO SE ENCONTRO ID"<<endl;
-    }
-}
 
 ///MENU MONEDAS
 //Agrega una moneda, si se pudo agregar retorna true, sino false

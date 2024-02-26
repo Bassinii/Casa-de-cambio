@@ -34,7 +34,6 @@ bool crearTransaccion();
 void mostrarTransaccionPorID();
 void mostrarTodasLasTransacciones();
 bool eliminarTransaccion();
-void buscarTransaccion();
 
 ///MENU MONEDAS
 bool agregarMoneda();
