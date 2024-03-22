@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1711137031 source:c:\users\usuario\3d objects\cb\freezados\freezados\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+	"rlutil.h"
+	"menues.h"
+	"cFecha.h"
+	"classes.h"
+
+1711106620 c:\users\usuario\3d objects\cb\freezados\freezados\cfecha.h
+
+1711106620 c:\users\usuario\3d objects\cb\freezados\freezados\classes.h
+
+1711049309 source:c:\users\bruno\desktop\bruno\programacion\c++\freezados-main\main.cpp
+	<iostream>
+	<cstring>
+	<ctime>
+	"rlutil.h"
+	"menues.h"
+	"cFecha.h"
+	"classes.h"
+
+1708961617 c:\users\bruno\desktop\bruno\programacion\c++\freezados-main\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1711054575 c:\users\bruno\desktop\bruno\programacion\c++\freezados-main\menues.h
+
+1711036411 c:\users\bruno\desktop\bruno\programacion\c++\freezados-main\cfecha.h
+
+1711049042 c:\users\bruno\desktop\bruno\programacion\c++\freezados-main\classes.h
+
+1711106620 c:\users\usuario\3d objects\cb\freezados\freezados\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1711144619 c:\users\usuario\3d objects\cb\freezados\freezados\menues.h
+

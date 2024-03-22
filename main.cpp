@@ -1,21 +1,18 @@
 #include <iostream>
 #include <cstring>
 #include <ctime>
-
 #include "rlutil.h"
-using namespace rlutil;
 
 using namespace std;
+using namespace rlutil;
 
-#include "prototypes.h"
+#include "menues.h"
 #include "cFecha.h"
 #include "classes.h"
-#include "menus.h"
-#include "functions.h"
+
 
 int main(){
-    SetConsoleTitle("CHANGE COIN");
-    setBackgroundColor(CYAN);
+    SetConsoleTitle("FREEZADOS");
     menuPrincipal();
     return 0;
 }

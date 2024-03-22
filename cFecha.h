@@ -127,7 +127,7 @@ bool Fecha::operator==(Fecha &obj)
 
 void Fecha::NumeroSerieaFecha(int ns)
 {
-  int suma=0, dia_adicional, suma_ant=0;
+  int suma=0, dia_adicional, suma_ant;
   int anio_real=1900;
   while(ns>suma)
     {
